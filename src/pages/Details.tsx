@@ -18,8 +18,26 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useEffect, useRef } from "react";
 
 const Details = () => {
+  const statusRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollStatus = () => {
+      if (statusRef.current) {
+        if (statusRef.current.scrollLeft >= statusRef.current.scrollWidth - statusRef.current.clientWidth) {
+          statusRef.current.scrollLeft = 0;
+        } else {
+          statusRef.current.scrollLeft += 1;
+        }
+      }
+    };
+
+    const intervalId = setInterval(scrollStatus, 50);
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
@@ -106,16 +124,33 @@ const Details = () => {
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
                     <div className="text-sm text-smolder-text/60">/current-total-costs</div>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-smolder-text">
-                    <div className="flex items-center gap-2">
+                  <div 
+                    ref={statusRef}
+                    className="flex items-center gap-8 text-sm text-smolder-text whitespace-nowrap overflow-hidden"
+                    style={{ scrollBehavior: 'smooth' }}
+                  >
+                    <div className="flex items-center gap-2 min-w-max">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                       Ready
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 min-w-max">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Print & delivery to you
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 min-w-max">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      Discord staff 24/7
+                    </div>
+                    {/* Duplicate items for smooth infinite scroll */}
+                    <div className="flex items-center gap-2 min-w-max">
+                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      Ready
+                    </div>
+                    <div className="flex items-center gap-2 min-w-max">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      Print & delivery to you
+                    </div>
+                    <div className="flex items-center gap-2 min-w-max">
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                       Discord staff 24/7
                     </div>
@@ -209,7 +244,7 @@ const Details = () => {
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
                     <Button 
-                      className="bg-transparent text-smolder-text hover:bg-gradient-to-r from-smolder-gradient-from to-smolder-gradient-to border border-smolder-border transition-all duration-300"
+                      className="relative bg-transparent text-smolder-text hover:bg-transparent border-0 before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10"
                     >
                       Proceed -$3.00
                     </Button>

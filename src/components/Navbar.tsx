@@ -10,7 +10,7 @@ export const Navbar = () => {
             <Link to="/" className="text-[#FF6B81] font-semibold text-xl">Smolder AI</Link>
           </div>
           <div className="flex items-center">
-            <div className="flex items-center space-x-4 mr-16">
+            <div className="flex items-center space-x-4 mr-8">
               <Link to="/create">
                 <Button 
                   variant="ghost" 
@@ -32,7 +32,12 @@ export const Navbar = () => {
                 Terms of service
               </Button>
             </div>
-            <Button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-6">Login</Button>
+            <Button 
+              variant="ghost" 
+              className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:scale-110 transition-transform duration-200 hover:bg-transparent"
+            >
+              Login
+            </Button>
           </div>
         </div>
       </div>

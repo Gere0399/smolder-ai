@@ -51,7 +51,7 @@ const Index = () => {
       
       <main className="flex items-center min-h-screen pt-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-          <div className="space-y-12">
+          <div className="space-y-8">
             <h1 className="text-[42px] font-bold text-white leading-[1.05] max-w-[540px] tracking-[-0.02em]">
               Bridge the gap between your imagination and the physical world
             </h1>

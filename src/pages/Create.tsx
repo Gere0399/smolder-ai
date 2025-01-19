@@ -1,6 +1,8 @@
-import { Box } from "lucide-react";
+import { Box, Paperclip } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 const Create = () => {
   return (
@@ -39,6 +41,30 @@ const Create = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Prompt Box */}
+          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl">
+            <div className="bg-white rounded-lg shadow-lg mx-4">
+              <div className="relative">
+                <Textarea 
+                  placeholder="Create a new concept: 3d sculpture of a golden bird"
+                  className="min-h-[60px] w-full resize-none border-0 bg-transparent px-4 py-[14px] pr-20 focus-visible:ring-0 focus-visible:ring-offset-0 text-black"
+                />
+                <div className="absolute right-2 bottom-2 flex items-center gap-2">
+                  <button className="p-2 hover:bg-gray-100 rounded-md transition-colors">
+                    <Paperclip className="w-5 h-5 text-gray-500" />
+                  </button>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Box className="w-4 h-4" />
+                    <span className="text-gray-600">3D prints</span>
+                  </div>
+                  <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90">
+                    Create
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

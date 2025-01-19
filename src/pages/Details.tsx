@@ -1,4 +1,5 @@
-import { ArrowLeft, Heart, Link as LinkIcon, ArrowRight, Download, Plus, X } from "lucide-react";
+import { ArrowLeft, Link as LinkIcon, ArrowRight, Download, Plus, X } from "lucide-react";
+import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -92,13 +93,10 @@ const Details = () => {
                 variant="outline" 
                 size="icon" 
                 className="rounded-full border-smolder-border"
-              >
-                <Heart className="w-4 h-4" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="icon" 
-                className="rounded-full border-smolder-border"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  toast("Copied link of the product to clipboard");
+                }}
               >
                 <LinkIcon className="w-4 h-4" />
               </Button>

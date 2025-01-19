@@ -31,12 +31,12 @@ const Details = () => {
         if (statusRef.current.scrollLeft >= statusRef.current.scrollWidth - statusRef.current.clientWidth) {
           statusRef.current.scrollLeft = 0;
         } else {
-          statusRef.current.scrollLeft += 0.5;
+          statusRef.current.scrollLeft += 1;
         }
       }
     };
 
-    const intervalId = setInterval(scrollStatus, 20);
+    const intervalId = setInterval(scrollStatus, 50);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -198,18 +198,19 @@ const Details = () => {
                           <Plus className="w-4 h-4" /> Add
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-56 bg-white">
-                        <DropdownMenuLabel>Materials</DropdownMenuLabel>
+                      <DropdownMenuContent className="w-56 bg-smolder-bg border-smolder-border">
+                        <DropdownMenuLabel className="text-smolder-text">Materials</DropdownMenuLabel>
                         {!selectedMaterial && ["PLA", "ABS", "PETG"].map((material) => (
                           <DropdownMenuItem 
                             key={material}
                             onClick={() => handleAddMaterial(material)}
+                            className="text-smolder-text hover:bg-smolder-muted focus:bg-smolder-muted"
                           >
                             {material}
                           </DropdownMenuItem>
                         ))}
-                        <DropdownMenuSeparator />
-                        <DropdownMenuLabel>Colors</DropdownMenuLabel>
+                        <DropdownMenuSeparator className="bg-smolder-border" />
+                        <DropdownMenuLabel className="text-smolder-text">Colors</DropdownMenuLabel>
                         {!selectedColor && [
                           { name: "Orange", color: "#FEA500" },
                           { name: "Dark Gray", color: "#4A4A4A" }
@@ -217,6 +218,7 @@ const Details = () => {
                           <DropdownMenuItem 
                             key={color.name}
                             onClick={() => handleAddColor(color.name, color.color)}
+                            className="text-smolder-text hover:bg-smolder-muted focus:bg-smolder-muted"
                           >
                             <span className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: color.color }}></span>
                             {color.name}
@@ -274,7 +276,7 @@ const Details = () => {
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
                     <Button 
-                      className="relative bg-transparent text-smolder-text hover:bg-transparent border-0 before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10"
+                      className="relative bg-transparent text-smolder-text hover:bg-transparent border-2 border-transparent hover:border-[#6445AB] before:absolute before:inset-0 before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10 transition-all duration-300"
                     >
                       Proceed -$3.00
                     </Button>

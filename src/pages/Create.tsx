@@ -3,10 +3,27 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Create = () => {
   const [activeTab, setActiveTab] = useState<'yours' | 'others'>('yours');
+  const [attachedImages, setAttachedImages] = useState<string[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files) return;
+
+    Array.from(files).forEach(file => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setAttachedImages(prev => [...prev, e.target?.result as string]);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
@@ -26,7 +43,7 @@ const Create = () => {
             </button>
             <button
               onClick={() => setActiveTab('others')}
-              className={`text-sm text-smolder-text/60 hover:text-smolder-text/80 ${
+              className={`text-xs text-smolder-text/60 hover:text-smolder-text/80 ${
                 activeTab === 'others' 
                   ? 'text-white' 
                   : ''
@@ -39,7 +56,7 @@ const Create = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((item) => (
               <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden">
-                <div className="p-3 flex items-center space-x-2">
+                <div className="p-2 flex items-center space-x-2">
                   <Box className="text-[#C6B47F]" size={20} />
                   <span className="text-[#C6B47F] text-sm">concept</span>
                 </div>
@@ -65,15 +82,39 @@ const Create = () => {
           </div>
 
           {/* Prompt Box */}
-          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl">
+          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-xl">
             <div className="bg-white rounded-2xl shadow-lg mx-4">
-              <div className="relative pb-14"> {/* Added padding bottom for button spacing */}
+              <div className="relative pb-14">
+                {attachedImages.length > 0 && (
+                  <div className="flex gap-2 px-6 pt-4 overflow-x-auto">
+                    {attachedImages.map((image, index) => (
+                      <div key={index} className="w-16 h-16 flex-shrink-0">
+                        <img
+                          src={image}
+                          alt={`Attached ${index + 1}`}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <Textarea 
                   placeholder="Create a new concept: 3d sculpture of a golden bird"
-                  className="min-h-[72px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent"
+                  className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent"
+                />
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  multiple
                 />
                 <div className="absolute bottom-2 left-4 flex items-center gap-4">
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <button 
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
                     <Paperclip className="w-5 h-5 text-gray-400" />
                   </button>
                   <div className="flex items-center gap-2 text-sm">

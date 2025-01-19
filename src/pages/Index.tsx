@@ -3,7 +3,7 @@ import { ProcessVisualization } from "@/components/ProcessVisualization";
 import { Paperclip, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { usePromptStore } from "@/store/promptStore";
 
 const Index = () => {
@@ -11,7 +11,54 @@ const Index = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [prompt, setPrompt] = useState("");
   const [attachedImage, setAttachedImage] = useState<string | null>(null);
+  const [placeholderText, setPlaceholderText] = useState("");
   const { setPrompt: setStorePrompt, setAttachedImage: setStoreAttachedImage } = usePromptStore();
+
+  const prompts = [
+    "Design a 3D golden bird sculpture",
+    "Produce a 3D illustration of a lion with a golden hide",
+    "Model a curved, 12mm-diameter tube to connect two shower pipes"
+  ];
+
+  useEffect(() => {
+    let currentIndex = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+    let timeout: NodeJS.Timeout;
+
+    const type = () => {
+      const currentPrompt = prompts[currentIndex];
+      
+      if (isDeleting) {
+        setPlaceholderText(currentPrompt.substring(0, currentChar - 1));
+        currentChar--;
+      } else {
+        setPlaceholderText(currentPrompt.substring(0, currentChar + 1));
+        currentChar++;
+      }
+
+      if (!isDeleting && currentChar === currentPrompt.length) {
+        timeout = setTimeout(() => {
+          isDeleting = true;
+          type();
+        }, 1500);
+        return;
+      }
+
+      if (isDeleting && currentChar === 0) {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % prompts.length;
+        timeout = setTimeout(type, 500);
+        return;
+      }
+
+      timeout = setTimeout(type, isDeleting ? 50 : 100);
+    };
+
+    type();
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const handleCreate = () => {
     setStorePrompt(prompt);
@@ -77,8 +124,10 @@ const Index = () => {
                     </div>
                   )}
                   <textarea
-                    className="w-full min-h-[100px] bg-transparent rounded-xl p-6 text-[18px] text-gray-800 placeholder:text-gray-900 placeholder:font-[500] focus:outline-none focus:ring-0 resize-none"
-                    placeholder="Create a 3d sculpture of a golden bird"
+                    className={`w-full min-h-[100px] bg-transparent rounded-xl p-6 text-[18px] ${
+                      prompt ? 'text-gray-900' : 'text-gray-400'
+                    } placeholder:text-gray-400 placeholder:font-[500] focus:outline-none focus:ring-0 resize-none`}
+                    placeholder={placeholderText}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                   />
@@ -120,3 +169,4 @@ const Index = () => {
 };
 
 export default Index;
+

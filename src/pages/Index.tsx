@@ -18,26 +18,28 @@ const Index = () => {
       
       <main className="pt-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-6">
-            <h1 className="text-[72px] font-bold text-white leading-[1.05] max-w-[540px] tracking-[-0.02em]">
+          <div className="space-y-12">
+            <h1 className="text-[52px] font-bold text-white leading-[1.05] max-w-[540px] tracking-[-0.02em]">
               Bridge the gap between your imagination and the physical world
             </h1>
             
-            <div className="relative max-w-xl mt-8">
+            <div className="relative max-w-xl">
               <textarea
-                className="w-full h-[90px] bg-white rounded-lg p-5 text-[15px] text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-200 resize-none"
+                className="w-full h-[110px] bg-white/95 backdrop-blur-sm rounded-xl p-6 text-[15px] text-gray-800 placeholder:text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-200 resize-none"
                 placeholder="Create a 3d sculpture of a golden bird"
               />
-              <div className="absolute bottom-5 right-5 flex items-center space-x-2">
+              <div className="absolute bottom-6 left-6">
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-gray-400 hover:text-gray-600 hover:bg-gray-50"
+                  className="text-gray-600 hover:text-gray-800 hover:bg-gray-50"
                 >
                   <Paperclip className="w-4 h-4" />
                 </Button>
+              </div>
+              <div className="absolute bottom-6 right-6">
                 <Button 
-                  className="bg-black hover:bg-gray-900 text-white text-sm px-6 py-2 rounded-lg"
+                  className="bg-black hover:bg-gray-900 text-white text-sm px-6 py-2 rounded-xl"
                   onClick={handleCreate}
                 >
                   Create

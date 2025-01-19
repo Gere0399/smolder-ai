@@ -1,4 +1,4 @@
-import { ArrowLeft, Heart, Link as LinkIcon, Download, ArrowRight } from "lucide-react";
+import { ArrowLeft, Heart, Link as LinkIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -62,7 +62,7 @@ const Details = () => {
           {/* Center column - Main Image */}
           <div className="col-span-12 lg:col-span-5">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
-              <div className="relative aspect-video">
+              <div className="relative aspect-[4/5]">
                 <img 
                   src="/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png"
                   alt="Concept preview" 
@@ -76,102 +76,105 @@ const Details = () => {
                   className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm gap-2 hover:bg-white"
                 >
                   Modify idea
-                  <Download className="w-4 h-4" />
                 </Button>
               </div>
             </Card>
           </div>
 
           {/* Right column - Details */}
-          <div className="col-span-12 lg:col-span-4 space-y-6">
-            {/* Price and status */}
-            <div className="bg-smolder-muted rounded-xl p-6">
-              <div className="flex justify-between items-start mb-6">
-                <div className="text-3xl font-bold text-smolder-accent">$27</div>
-                <div className="text-sm text-smolder-text/60">/current-total-costs</div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-smolder-text">
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                  Ready
+          <div className="col-span-12 lg:col-span-4">
+            <Card className="bg-smolder-muted rounded-xl overflow-hidden">
+              <div className="p-6 space-y-8">
+                {/* Price and status */}
+                <div>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="text-3xl font-bold text-smolder-accent">$27</div>
+                    <div className="text-sm text-smolder-text/60">/current-total-costs</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-smolder-text">
+                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      Ready
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-smolder-text">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      Print & delivery to you
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-smolder-text">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      Discord staff 24/7
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-smolder-text">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                  Print & delivery to you
-                </div>
-                <div className="flex items-center gap-2 text-sm text-smolder-text">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                  Discord staff 24/7
-                </div>
-              </div>
-            </div>
 
-            {/* Full prompt */}
-            <div className="bg-smolder-muted rounded-xl p-6">
-              <h3 className="text-lg font-medium text-smolder-text mb-4">Full Prompt:</h3>
-              <p className="text-sm text-smolder-text/80">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type 
-                specimen book.
-              </p>
-            </div>
-
-            {/* Materials & colors */}
-            <div className="bg-smolder-muted rounded-xl p-6">
-              <h3 className="text-lg font-medium text-smolder-text mb-4">
-                Printing materials & colors
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                >
-                  <span className="mr-1">🛠️</span> PLA ×
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                >
-                  <span className="w-3 h-3 rounded-full bg-[#FEA500] mr-1"></span> #FEA500 ×
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                >
-                  <span className="w-3 h-3 rounded-full bg-[#4A4A4A] mr-1"></span> #4A4A4A ×
-                </Button>
-              </div>
-            </div>
-
-            {/* Next steps */}
-            <div className="bg-smolder-muted rounded-xl p-6">
-              <h3 className="text-lg font-medium text-smolder-text mb-4">
-                Next steps for your delivered 3D model
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-green-500/10 text-green-400 rounded-lg text-sm font-medium">
-                    Concept image
-                  </span>
-                  <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                  <span className="text-sm text-smolder-text/80">Conversion to 3D</span>
+                {/* Full prompt */}
+                <div>
+                  <h3 className="text-lg font-medium text-smolder-text mb-4">Full Prompt:</h3>
+                  <p className="text-sm text-smolder-text/80">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                    when an unknown printer took a galley of type and scrambled it to make a type 
+                    specimen book.
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                  <span className="text-sm text-smolder-text/80">3D printable</span>
-                  <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                  <span className="text-sm text-smolder-text/80">Printing & delivering</span>
+
+                {/* Materials & colors */}
+                <div>
+                  <h3 className="text-lg font-medium text-smolder-text mb-4">
+                    Printing materials & colors
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
+                    >
+                      <span className="mr-1">🛠️</span> PLA ×
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
+                    >
+                      <span className="w-3 h-3 rounded-full bg-[#FEA500] mr-1"></span> #FEA500 ×
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
+                    >
+                      <span className="w-3 h-3 rounded-full bg-[#4A4A4A] mr-1"></span> #4A4A4A ×
+                    </Button>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-6 flex items-center justify-between">
-                <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
-                <Button className="bg-transparent text-smolder-text hover:bg-smolder-border border border-smolder-border">
-                  Proceed -$3.00
-                </Button>
+
+                {/* Next steps */}
+                <div>
+                  <h3 className="text-lg font-medium text-smolder-text mb-4">
+                    Next steps for your delivered 3D model
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 bg-green-500/10 text-green-400 rounded-lg text-sm font-medium">
+                        Concept image
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-smolder-text/40" />
+                      <span className="text-sm text-smolder-text/80">Conversion to 3D</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 text-smolder-text/40" />
+                      <span className="text-sm text-smolder-text/80">3D printable</span>
+                      <ArrowRight className="w-4 h-4 text-smolder-text/40" />
+                      <span className="text-sm text-smolder-text/80">Printing & delivering</span>
+                    </div>
+                  </div>
+                  <div className="mt-6 flex items-center justify-between">
+                    <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
+                    <Button className="bg-transparent text-smolder-text hover:bg-smolder-border border border-smolder-border">
+                      Proceed -$3.00
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,12 +1,14 @@
-import { ArrowLeft, Heart, Link as LinkIcon } from "lucide-react";
+import { ArrowLeft, Heart, Link as LinkIcon, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Navbar } from "@/components/Navbar";
 
 const Details = () => {
   return (
     <div className="min-h-screen bg-smolder-bg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Back button and title section */}
         <div className="mb-8">
           <Link to="/create" className="inline-flex items-center text-smolder-text hover:text-smolder-accent transition-colors">
@@ -14,7 +16,13 @@ const Details = () => {
             <span className="text-lg">Back</span>
           </Link>
           <div className="mt-4 flex items-start justify-between">
-            <h1 className="text-3xl font-semibold text-white">3D - This is the prompt resumed as a title for easy access</h1>
+            <div>
+              <h1 className="text-3xl font-semibold text-white">3D - This is the prompt resumed as a title for easy access</h1>
+              <div className="mt-2 text-sm text-smolder-text">Made by SmolderAI group</div>
+              <div className="mt-4">
+                <Button variant="outline" className="rounded-full text-sm">Contact us</Button>
+              </div>
+            </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="icon" className="rounded-full border-smolder-border">
                 <Heart className="w-5 h-5" />
@@ -24,24 +32,27 @@ const Details = () => {
               </Button>
             </div>
           </div>
-          <div className="mt-2 text-sm text-smolder-text">Made by SmolderAI group</div>
         </div>
 
         {/* Main content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left column - Main image */}
           <div className="lg:col-span-2">
-            <Card className="bg-white overflow-hidden rounded-xl">
-              <img 
-                src="/placeholder.svg" 
-                alt="Concept preview" 
-                className="w-full h-[600px] object-cover"
-              />
+            <Card className="bg-smolder-muted border-smolder-border overflow-hidden rounded-xl">
+              <div className="relative">
+                <img 
+                  src="/lovable-uploads/387b2831-02b3-43f1-b5ef-c7393b4d3a2d.png"
+                  alt="Concept preview" 
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded-md">
+                  <span className="text-white text-sm">CONCEPT</span>
+                </div>
+              </div>
               <div className="p-4 flex justify-between items-center">
-                <div className="text-lg font-medium">CONCEPT</div>
                 <Button variant="outline" className="gap-2">
                   Modify idea
-                  <ArrowLeft className="w-4 h-4 rotate-180" />
+                  <Download className="w-4 h-4" />
                 </Button>
               </div>
             </Card>
@@ -83,27 +94,32 @@ const Details = () => {
             <div className="bg-smolder-muted rounded-xl p-6">
               <h3 className="text-lg font-medium text-white mb-4">Printing materials & colors</h3>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1.5 bg-smolder-border rounded-lg text-sm text-white">PLA ×</span>
-                <span className="px-3 py-1.5 bg-smolder-border rounded-lg text-sm text-white">#FEA500 ×</span>
-                <span className="px-3 py-1.5 bg-smolder-border rounded-lg text-sm text-white">#4A4A4A ×</span>
-                <span className="px-3 py-1.5 bg-smolder-border rounded-lg text-sm text-white">#4A4A4A ×</span>
+                <Button variant="outline" size="sm" className="rounded-lg">
+                  <span className="mr-1">🛠️</span> PLA ×
+                </Button>
+                <Button variant="outline" size="sm" className="rounded-lg">
+                  <span className="w-3 h-3 rounded-full bg-[#FEA500] mr-1"></span> #FEA500 ×
+                </Button>
+                <Button variant="outline" size="sm" className="rounded-lg">
+                  <span className="w-3 h-3 rounded-full bg-[#4A4A4A] mr-1"></span> #4A4A4A ×
+                </Button>
               </div>
             </div>
 
             {/* Next steps */}
             <div className="bg-smolder-muted rounded-xl p-6">
               <h3 className="text-lg font-medium text-white mb-4">Next steps for your delivered 3D model</h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1 bg-green-500/20 text-green-500 rounded-lg text-sm">Concept image</div>
+                  <span className="px-3 py-1 bg-green-500/20 text-green-500 rounded-lg text-sm">Concept image</span>
                   <ArrowLeft className="w-4 h-4 rotate-180 text-smolder-text" />
-                  <div className="text-sm text-smolder-text">Conversion to 3D</div>
+                  <span className="text-sm text-smolder-text">Conversion to 3D</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ArrowLeft className="w-4 h-4 rotate-180 text-smolder-text" />
-                  <div className="text-sm text-smolder-text">3D printable</div>
+                  <span className="text-sm text-smolder-text">3D printable</span>
                   <ArrowLeft className="w-4 h-4 rotate-180 text-smolder-text" />
-                  <div className="text-sm text-smolder-text">Printing & delivering</div>
+                  <span className="text-sm text-smolder-text">Printing & delivering</span>
                 </div>
               </div>
               <div className="mt-6 flex items-center justify-between">
@@ -117,18 +133,31 @@ const Details = () => {
         </div>
 
         {/* Bottom progress grid */}
-        <div className="mt-12 grid grid-cols-5 gap-4">
-          {['CONCEPT', '3D', 'PRINTABLE FILE', 'PRINTING 3D MODEL', 'DELIVERY TO YOU'].map((step, index) => (
-            <Card key={step} className="bg-smolder-muted border-smolder-border overflow-hidden">
+        <div className="mt-12 grid grid-cols-5 gap-4 pb-8">
+          {[
+            { label: 'CONCEPT', img: '/lovable-uploads/387b2831-02b3-43f1-b5ef-c7393b4d3a2d.png' },
+            { label: '3D', img: '/lovable-uploads/387b2831-02b3-43f1-b5ef-c7393b4d3a2d.png' },
+            { label: 'PRINTABLE FILE', img: '/lovable-uploads/387b2831-02b3-43f1-b5ef-c7393b4d3a2d.png' },
+            { label: 'PRINTING 3D MODEL', img: '/lovable-uploads/387b2831-02b3-43f1-b5ef-c7393b4d3a2d.png' },
+            { label: 'DELIVERY TO YOU', img: '/lovable-uploads/387b2831-02b3-43f1-b5ef-c7393b4d3a2d.png' }
+          ].map((step) => (
+            <Card key={step.label} className="bg-smolder-muted border-smolder-border overflow-hidden">
               <div className="aspect-video relative">
                 <img 
-                  src="/placeholder.svg" 
-                  alt={step} 
+                  src={step.img}
+                  alt={step.label} 
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-2 left-2 text-xs text-white bg-black/50 px-2 py-1 rounded">
-                  {step}
+                  {step.label}
                 </div>
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="absolute bottom-2 right-2 bg-black/50 rounded-full w-8 h-8"
+                >
+                  <Download className="w-4 h-4" />
+                </Button>
               </div>
             </Card>
           ))}

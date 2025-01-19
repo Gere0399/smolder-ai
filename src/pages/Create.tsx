@@ -1,14 +1,44 @@
-import { Box, Paperclip, X } from "lucide-react";
+import { Box, Paperclip, X, Image, Shirt } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const Create = () => {
   const [activeTab, setActiveTab] = useState<'yours' | 'others'>('yours');
   const [attachedImage, setAttachedImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      // Skip if the target is a textarea or has scrollable content
+      if (
+        e.target instanceof HTMLElement && 
+        (e.target.tagName === 'TEXTAREA' || 
+         e.target.closest('.max-h-24'))
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollLeft += e.deltaY;
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, []);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -58,7 +88,10 @@ const Create = () => {
             </button>
           </div>
 
-          <div className="flex overflow-x-auto pb-4 space-x-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto pb-4 space-x-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50"
+          >
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0">
                 <div className="py-3 flex items-center justify-center space-x-2">

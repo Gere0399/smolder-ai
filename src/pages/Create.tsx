@@ -65,14 +65,14 @@ const Create = () => {
           </div>
 
           {/* Prompt Box */}
-          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl">
+          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl">
             <div className="bg-white rounded-2xl shadow-lg mx-4">
               <div className="relative">
                 <Textarea 
                   placeholder="Create a new concept: 3d sculpture of a golden bird"
-                  className="min-h-[64px] w-full resize-none border-0 bg-transparent px-6 py-5 pr-40 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500"
+                  className="min-h-[72px] w-full resize-none border-0 bg-transparent px-6 py-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500"
                 />
-                <div className="absolute right-4 bottom-4 flex items-center gap-4">
+                <div className="absolute bottom-4 left-4 flex items-center gap-4">
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                     <Paperclip className="w-5 h-5 text-gray-400" />
                   </button>
@@ -80,6 +80,8 @@ const Create = () => {
                     <Box className="w-4 h-4 text-gray-500" />
                     <span className="text-gray-500">3D prints</span>
                   </div>
+                </div>
+                <div className="absolute bottom-4 right-4">
                   <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90 rounded-lg px-6">
                     Create
                   </Button>

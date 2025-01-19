@@ -12,7 +12,7 @@ export default function Register() {
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8 pt-52 pb-16">
         <div className="space-y-6">
           <Button 
-            variant="outline"
+            variant="outline" 
             className="w-full bg-white hover:bg-white/90 text-black gap-2 transition-all duration-300 hover:scale-105"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@ export default function Register() {
                     className="border-smolder-border bg-smolder-bg text-smolder-text"
                   />
                 </div>
-                <Button className="bg-white text-black hover:bg-white/90">
+                <Button className="bg-white text-black hover:bg-white/90 transition-all duration-300 hover:scale-105">
                   Create account
                 </Button>
               </div>

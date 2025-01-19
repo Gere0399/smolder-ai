@@ -88,14 +88,12 @@ const Index = () => {
                 onChange={handleFileSelect}
               />
               <div className="absolute bottom-6 left-6">
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                <button 
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  <Paperclip className="w-4 h-4" />
-                </Button>
+                  <Paperclip className="w-5 h-5 text-gray-400" />
+                </button>
               </div>
               <div className="absolute bottom-6 right-6">
                 <Button 

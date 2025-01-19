@@ -22,8 +22,8 @@ import { useEffect, useRef, useState } from "react";
 
 const Details = () => {
   const statusRef = useRef<HTMLDivElement>(null);
-  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<{name: string, color: string}[]>([]);
+  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<{name: string, color: string} | null>(null);
 
   useEffect(() => {
     const scrollStatus = () => {
@@ -31,29 +31,29 @@ const Details = () => {
         if (statusRef.current.scrollLeft >= statusRef.current.scrollWidth - statusRef.current.clientWidth) {
           statusRef.current.scrollLeft = 0;
         } else {
-          statusRef.current.scrollLeft += 0.5; // Slower scroll speed
+          statusRef.current.scrollLeft += 0.5;
         }
       }
     };
 
-    const intervalId = setInterval(scrollStatus, 20); // More frequent updates for smoother animation
+    const intervalId = setInterval(scrollStatus, 20);
     return () => clearInterval(intervalId);
   }, []);
 
   const handleAddMaterial = (material: string) => {
-    setSelectedMaterials(prev => [...prev, material]);
+    setSelectedMaterial(material);
   };
 
   const handleAddColor = (name: string, color: string) => {
-    setSelectedColors(prev => [...prev, { name, color }]);
+    setSelectedColor({ name, color });
   };
 
-  const handleRemoveMaterial = (material: string) => {
-    setSelectedMaterials(prev => prev.filter(m => m !== material));
+  const handleRemoveMaterial = () => {
+    setSelectedMaterial(null);
   };
 
-  const handleRemoveColor = (colorName: string) => {
-    setSelectedColors(prev => prev.filter(c => c.name !== colorName));
+  const handleRemoveColor = () => {
+    setSelectedColor(null);
   };
 
   return (
@@ -62,7 +62,6 @@ const Details = () => {
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <div className="grid grid-cols-12 gap-8">
-          {/* Left column - Title and contact */}
           <div className="col-span-12 lg:col-span-3">
             <Link 
               to="/create" 
@@ -103,7 +102,6 @@ const Details = () => {
             </Button>
           </div>
 
-          {/* Center column - Main Image */}
           <div className="col-span-12 lg:col-span-5">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
               <div className="relative aspect-[4/5]">
@@ -124,7 +122,7 @@ const Details = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full"
+                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full w-10 h-10 flex items-center justify-center"
                 >
                   <Download className="w-4 h-4" />
                 </Button>
@@ -132,11 +130,9 @@ const Details = () => {
             </Card>
           </div>
 
-          {/* Right column - Details */}
           <div className="col-span-12 lg:col-span-4">
-            <Card className="bg-smolder-muted rounded-xl">
+            <Card className="rounded-xl border-smolder-border">
               <div className="p-6 space-y-8">
-                {/* Price and status */}
                 <div>
                   <div className="flex items-center gap-2 mb-6">
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
@@ -159,7 +155,6 @@ const Details = () => {
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                       Discord staff 24/7
                     </div>
-                    {/* Duplicate items for smooth infinite scroll */}
                     <div className="flex items-center gap-2 min-w-max">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                       Ready
@@ -175,7 +170,6 @@ const Details = () => {
                   </div>
                 </div>
 
-                {/* Full prompt */}
                 <div>
                   <h3 className="text-lg font-medium text-smolder-text mb-4">Full Prompt:</h3>
                   <div className="max-h-32 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
@@ -189,7 +183,6 @@ const Details = () => {
                   </div>
                 </div>
 
-                {/* Materials & colors */}
                 <div>
                   <h3 className="text-lg font-medium text-smolder-text mb-4">
                     Printing materials & colors
@@ -205,9 +198,9 @@ const Details = () => {
                           <Plus className="w-4 h-4" /> Add
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-56">
+                      <DropdownMenuContent className="w-56 bg-white">
                         <DropdownMenuLabel>Materials</DropdownMenuLabel>
-                        {["PLA", "ABS", "PETG"].map((material) => (
+                        {!selectedMaterial && ["PLA", "ABS", "PETG"].map((material) => (
                           <DropdownMenuItem 
                             key={material}
                             onClick={() => handleAddMaterial(material)}
@@ -217,7 +210,7 @@ const Details = () => {
                         ))}
                         <DropdownMenuSeparator />
                         <DropdownMenuLabel>Colors</DropdownMenuLabel>
-                        {[
+                        {!selectedColor && [
                           { name: "Orange", color: "#FEA500" },
                           { name: "Dark Gray", color: "#4A4A4A" }
                         ].map((color) => (
@@ -232,36 +225,33 @@ const Details = () => {
                       </DropdownMenuContent>
                     </DropdownMenu>
                     
-                    {selectedMaterials.map((material) => (
+                    {selectedMaterial && (
                       <Button 
-                        key={material}
                         variant="outline" 
                         size="sm" 
                         className="rounded-lg bg-transparent border-smolder-border text-smolder-text group"
-                        onClick={() => handleRemoveMaterial(material)}
+                        onClick={handleRemoveMaterial}
                       >
-                        <span className="mr-1">🛠️</span> {material}
+                        <span className="mr-1">🛠️</span> {selectedMaterial}
                         <X className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </Button>
-                    ))}
+                    )}
                     
-                    {selectedColors.map((color) => (
+                    {selectedColor && (
                       <Button 
-                        key={color.name}
                         variant="outline" 
                         size="sm" 
                         className="rounded-lg bg-transparent border-smolder-border text-smolder-text group"
-                        onClick={() => handleRemoveColor(color.name)}
+                        onClick={handleRemoveColor}
                       >
-                        <span className="w-3 h-3 rounded-full mr-1" style={{ backgroundColor: color.color }}></span>
-                        {color.name}
+                        <span className="w-3 h-3 rounded-full mr-1" style={{ backgroundColor: selectedColor.color }}></span>
+                        {selectedColor.name}
                         <X className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </Button>
-                    ))}
+                    )}
                   </div>
                 </div>
 
-                {/* Next steps */}
                 <div>
                   <h3 className="text-lg font-medium text-smolder-text mb-4">
                     Next steps for your delivered 3D model
@@ -295,7 +285,6 @@ const Details = () => {
           </div>
         </div>
 
-        {/* Bottom carousel */}
         <div className="mt-12 mb-8">
           <Carousel className="w-full">
             <CarouselContent>
@@ -320,7 +309,7 @@ const Details = () => {
                       <Button
                         variant="outline"
                         size="icon"
-                        className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full"
+                        className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full w-10 h-10 flex items-center justify-center"
                       >
                         <Download className="w-4 h-4" />
                       </Button>

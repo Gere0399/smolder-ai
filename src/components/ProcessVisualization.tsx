@@ -2,7 +2,7 @@ export const ProcessVisualization = () => {
   return (
     <div className="relative h-full pl-12">
       <img 
-        src="/lovable-uploads/61ee0890-c41b-4d33-b715-3c8390000b1c.png" 
+        src="/lovable-uploads/fe371211-be35-4d55-8a16-832d386f0ab2.png" 
         alt="Process visualization" 
         className="w-full h-auto"
       />

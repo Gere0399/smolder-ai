@@ -1,10 +1,12 @@
 import { Box } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Navbar } from "@/components/Navbar";
 
 const Create = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
-      <main className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-8">
+      <Navbar />
+      <main className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-24">
         <div className="space-y-8">
           <div className="flex flex-col space-y-4">
             <h2 className="text-xl font-semibold text-white">Your creations</h2>

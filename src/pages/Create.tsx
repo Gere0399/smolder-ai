@@ -112,7 +112,7 @@ const Create = () => {
             className="flex overflow-x-auto pb-4 space-x-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50"
           >
             {[1, 2, 3, 4, 5, 6].map((item) => (
-              <Link to="/details" key={item}>
+              <Link to="/product" key={item}>
                 <Card className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0 cursor-pointer">
                   <div className="py-3 flex items-center justify-center space-x-2">
                     <Box className="text-[#C6B47F]" size={16} />
@@ -126,7 +126,7 @@ const Create = () => {
                         className="w-full h-full object-cover"
                       />
                       <Link 
-                        to="/details"
+                        to="/product"
                         className="absolute bottom-3 right-4 px-4 py-1.5 text-sm bg-black/40 text-white rounded-md backdrop-blur-sm hover:bg-black/50 transition-colors"
                         onClick={handleSeeDetails}
                       >

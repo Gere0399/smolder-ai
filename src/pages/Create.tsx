@@ -60,7 +60,7 @@ const Create = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((item) => (
-              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-full max-w-[320px]">
+              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-full max-w-[360px]">
                 <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
                   <span className="text-[#C6B47F] text-sm">concept</span>
@@ -77,7 +77,7 @@ const Create = () => {
                     </button>
                   </div>
                   <div className="p-4 pt-4 pb-5">
-                    <div className="max-h-24 overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
+                    <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
                       <p className="text-sm text-smolder-text">
                         This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem. This text can now scroll if it gets too long and extends beyond the visible area. The content will remain contained within its designated space while allowing users to scroll through longer descriptions.
                       </p>

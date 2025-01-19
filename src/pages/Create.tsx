@@ -34,8 +34,8 @@ const Create = () => {
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
       <main className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-24">
-        <div className="space-y-8">
-          <div className="flex items-center space-x-4">
+        <div className="space-y-4">
+          <div className="flex items-end space-x-4">
             <button
               onClick={() => setActiveTab('yours')}
               className={`text-xl font-semibold ${
@@ -61,9 +61,9 @@ const Create = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((item) => (
               <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden">
-                <div className="p-1 flex items-center space-x-2">
+                <div className="p-1 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
-                  <span className="text-[#C6B47F] text-xs">concept</span>
+                  <span className="text-[#C6B47F] text-sm">concept</span>
                 </div>
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/3] bg-white">
@@ -77,8 +77,8 @@ const Create = () => {
                     </button>
                   </div>
                   <div className="p-4 pt-6 pb-8">
-                    <p className="text-sm text-smolder-text">
-                      This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem
+                    <p className="text-sm text-smolder-text max-h-24 overflow-y-auto">
+                      This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem. This text can now scroll if it gets too long and extends beyond the visible area. The content will remain contained within its designated space while allowing users to scroll through longer descriptions.
                     </p>
                   </div>
                 </CardContent>

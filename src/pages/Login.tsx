@@ -11,7 +11,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
-      <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16">
+      <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8 pt-52 pb-16">
         <div className="space-y-6">
           <Button 
             variant="outline" 

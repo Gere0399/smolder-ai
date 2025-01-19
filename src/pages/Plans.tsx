@@ -95,7 +95,7 @@ export default function Plans() {
               className="relative flex flex-col h-full overflow-hidden border-smolder-border bg-smolder-muted hover:border-smolder-accent/50 transition-colors duration-300 p-8"
             >
               {plan.isPopular && (
-                <div className="absolute -right-12 top-8 rotate-45 bg-smolder-accent px-12 py-1 text-sm font-medium text-white">
+                <div className="absolute -right-12 top-8 rotate-45 bg-gradient-to-r from-[#6445AB] to-[#7E3F41] px-12 py-1 text-sm font-medium text-white">
                   Popular
                 </div>
               )}

@@ -78,7 +78,7 @@ const Create = () => {
             </button>
             <button
               onClick={() => setActiveTab('others')}
-              className={`text-xl text-smolder-text/60 hover:text-smolder-text/80 ${
+              className={`text-lg text-smolder-text/60 hover:text-smolder-text/80 ${
                 activeTab === 'others' 
                   ? 'text-white' 
                   : ''
@@ -96,7 +96,7 @@ const Create = () => {
               <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0">
                 <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
-                  <span className="text-[#C6B47F] text-sm">concept</span>
+                  <span className="text-[#C6B47F] text-base">concept</span>
                 </div>
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/3] bg-white">
@@ -110,7 +110,7 @@ const Create = () => {
                     </button>
                   </div>
                   <div className="p-4 pt-4 pb-5">
-                    <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
+                    <div className="max-h-24 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
                       <p className="text-sm text-smolder-text">
                         This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem. This text can now scroll if it gets too long and extends beyond the visible area. The content will remain contained within its designated space while allowing users to scroll through longer descriptions.
                       </p>

@@ -1,9 +1,10 @@
-import { Box, Paperclip, X, Image, Shirt } from "lucide-react";
+import { Box, Paperclip, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useState, useRef, useEffect } from "react";
+import { usePromptStore } from "@/store/promptStore";
 
 const Create = () => {
   const [activeTab, setActiveTab] = useState<'yours' | 'others'>('yours');
@@ -134,52 +135,53 @@ const Create = () => {
             ))}
           </div>
 
-        {/* Prompt Box */}
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
-          <div className="bg-white rounded-2xl shadow-lg prompt-box">
-            <div className="relative pb-14">
-              {attachedImage && (
-                <div className="flex px-6 pt-4">
-                  <div className="relative w-12 h-12 flex-shrink-0">
-                    <img
-                      src={attachedImage}
-                      alt="Attached image"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                    <button
-                      onClick={removeImage}
-                      className="absolute -top-1.5 -right-1.5 p-0.5 bg-black/60 rounded-full hover:bg-black/80 transition-colors"
-                    >
-                      <X className="w-3 h-3 text-white" />
-                    </button>
+          {/* Prompt Box */}
+          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
+            <div className="bg-white rounded-2xl shadow-lg prompt-box">
+              <div className="relative pb-14">
+                {attachedImage && (
+                  <div className="flex px-6 pt-4">
+                    <div className="relative w-12 h-12 flex-shrink-0">
+                      <img
+                        src={attachedImage}
+                        alt="Attached image"
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                      <button
+                        onClick={removeImage}
+                        className="absolute -top-1.5 -right-1.5 p-0.5 bg-black/60 rounded-full hover:bg-black/80 transition-colors"
+                      >
+                        <X className="w-3 h-3 text-white" />
+                      </button>
+                    </div>
                   </div>
+                )}
+                <Textarea 
+                  placeholder="Create a new concept: 3d sculpture of a golden bird"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-900 text-[15px] scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8"
+                />
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                />
+                <div className="absolute bottom-2 left-4">
+                  <button 
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <Paperclip className="w-5 h-5 text-gray-400" />
+                  </button>
                 </div>
-              )}
-              <Textarea 
-                placeholder="Create a new concept: 3d sculpture of a golden bird"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-900 text-[15px] scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8"
-              />
-              <input
-                type="file"
-                ref={fileInputRef}
-                className="hidden"
-                accept="image/*"
-                onChange={handleFileSelect}
-              />
-              <div className="absolute bottom-2 left-4">
-                <button 
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <Paperclip className="w-5 h-5 text-gray-400" />
-                </button>
-              </div>
-              <div className="absolute bottom-2 right-4">
-                <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90 rounded-lg px-6">
-                  Create
-                </Button>
+                <div className="absolute bottom-2 right-4">
+                  <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90 rounded-lg px-6">
+                    Create
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

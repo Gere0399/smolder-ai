@@ -48,7 +48,7 @@ const Create = () => {
             </button>
             <button
               onClick={() => setActiveTab('others')}
-              className={`text-xs text-smolder-text/60 hover:text-smolder-text/80 ${
+              className={`text-xl text-smolder-text/60 hover:text-smolder-text/80 ${
                 activeTab === 'others' 
                   ? 'text-white' 
                   : ''
@@ -61,7 +61,7 @@ const Create = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((item) => (
               <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden">
-                <div className="p-1 flex items-center justify-center space-x-2">
+                <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
                   <span className="text-[#C6B47F] text-sm">concept</span>
                 </div>
@@ -77,9 +77,11 @@ const Create = () => {
                     </button>
                   </div>
                   <div className="p-4 pt-6 pb-8">
-                    <p className="text-sm text-smolder-text max-h-24 overflow-y-auto">
-                      This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem. This text can now scroll if it gets too long and extends beyond the visible area. The content will remain contained within its designated space while allowing users to scroll through longer descriptions.
-                    </p>
+                    <div className="max-h-24 overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
+                      <p className="text-sm text-smolder-text">
+                        This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem. This text can now scroll if it gets too long and extends beyond the visible area. The content will remain contained within its designated space while allowing users to scroll through longer descriptions.
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -109,7 +111,7 @@ const Create = () => {
                 )}
                 <Textarea 
                   placeholder="Create a new concept: 3d sculpture of a golden bird"
-                  className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent"
+                  className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent"
                 />
                 <input
                   type="file"

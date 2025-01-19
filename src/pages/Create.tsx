@@ -60,7 +60,7 @@ const Create = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((item) => (
-              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-full max-w-[280px]">
+              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-full max-w-[320px]">
                 <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
                   <span className="text-[#C6B47F] text-sm">concept</span>

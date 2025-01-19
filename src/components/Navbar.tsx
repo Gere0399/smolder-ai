@@ -9,8 +9,8 @@ export const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="text-smolder-accent font-semibold text-xl">Smolder AI</Link>
           </div>
-          <div className="flex items-center">
-            <div className="flex items-center space-x-6 mr-8">
+          <div className="flex items-center space-x-12">
+            <div className="flex items-center space-x-6">
               <Link to="/create">
                 <Button variant="ghost" className="text-smolder-text hover:text-white">Create</Button>
               </Link>

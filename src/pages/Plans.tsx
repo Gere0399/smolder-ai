@@ -29,6 +29,7 @@ const Plans = () => {
       price: billingCycle === 'yearly' ? "$19" : "$29",
       period: "/ month",
       billing: "billed yearly",
+      isPopular: true,
       features: [
         "5000x Fast Image Generation",
         "500x Image Generation",
@@ -61,9 +62,9 @@ const Plans = () => {
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-smolder-muted rounded-full p-1 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center bg-smolder-muted rounded-full p-1">
             <button
               onClick={() => setBillingCycle('yearly')}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
@@ -93,6 +94,11 @@ const Plans = () => {
               key={plan.name} 
               className="relative flex flex-col h-full overflow-hidden border-smolder-border bg-smolder-muted hover:border-smolder-accent/50 transition-colors duration-300 p-8"
             >
+              {plan.isPopular && (
+                <div className="absolute -right-12 top-8 rotate-45 bg-smolder-accent px-12 py-1 text-sm font-medium text-white">
+                  Popular
+                </div>
+              )}
               <div className="mb-8">
                 <h3 className="text-xl font-medium text-smolder-text/60 mb-4">{plan.name.toLowerCase()}.</h3>
                 <div className="flex items-baseline gap-1">
@@ -102,13 +108,7 @@ const Plans = () => {
                 <p className="text-sm text-smolder-text/60 mt-1">{plan.billing}</p>
               </div>
               
-              <Button 
-                className="w-full mb-8 bg-white text-black hover:bg-white/90 transition-colors duration-300"
-              >
-                Subscribe
-              </Button>
-
-              <div className="space-y-4">
+              <div className="flex-grow space-y-4 mb-8">
                 {plan.features.map((feature, index) => (
                   <div key={index} className="flex items-center text-sm gap-3">
                     <Check className="w-5 h-5 text-[#6445AB]" />
@@ -127,6 +127,12 @@ const Plans = () => {
                   </div>
                 ))}
               </div>
+
+              <Button 
+                className="w-full mt-auto bg-white text-black hover:bg-white/90 transition-colors duration-300"
+              >
+                Subscribe
+              </Button>
             </Card>
           ))}
         </div>

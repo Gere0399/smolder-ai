@@ -74,6 +74,10 @@ const Create = () => {
     }
   };
 
+  const handleSeeDetails = () => {
+    window.location.href = '/details'; // We'll update this with proper routing later
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
@@ -107,7 +111,7 @@ const Create = () => {
             className="flex overflow-x-auto pb-4 space-x-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50"
           >
             {[1, 2, 3, 4, 5, 6].map((item) => (
-              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0">
+              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0 cursor-pointer" onClick={handleSeeDetails}>
                 <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
                   <span className="text-[#C6B47F] text-base">concept</span>
@@ -119,7 +123,13 @@ const Create = () => {
                       alt="Concept preview"
                       className="w-full h-full object-cover"
                     />
-                    <button className="absolute bottom-3 right-4 px-4 py-1.5 text-sm bg-black/40 text-white rounded-md backdrop-blur-sm hover:bg-black/50 transition-colors">
+                    <button 
+                      className="absolute bottom-3 right-4 px-4 py-1.5 text-sm bg-black/40 text-white rounded-md backdrop-blur-sm hover:bg-black/50 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSeeDetails();
+                      }}
+                    >
                       See details
                     </button>
                   </div>
@@ -135,7 +145,6 @@ const Create = () => {
             ))}
           </div>
 
-          {/* Prompt Box */}
           <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
             <div className="bg-white rounded-2xl shadow-lg prompt-box">
               <div className="relative pb-14">

@@ -123,12 +123,6 @@ const Details = () => {
                 <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-md">
                   <span className="text-white text-sm font-medium">CONCEPT</span>
                 </div>
-                <Button 
-                  variant="outline" 
-                  className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm gap-2 hover:bg-white"
-                >
-                  Modify idea
-                </Button>
                 <Button
                   variant="outline"
                   size="icon"

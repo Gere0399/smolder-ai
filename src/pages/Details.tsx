@@ -24,6 +24,16 @@ const Details = () => {
   const statusRef = useRef<HTMLDivElement>(null);
   const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<{name: string, color: string} | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const scrollStatus = () => {
@@ -59,6 +69,8 @@ const Details = () => {
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
+      
+      <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-gradient-to-r from-smolder-gradient-from/80 to-smolder-gradient-to/80 backdrop-blur-md' : ''}`} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <div className="grid grid-cols-12 gap-8">
@@ -276,7 +288,7 @@ const Details = () => {
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
                     <Button 
-                      className="relative bg-transparent text-smolder-text hover:bg-transparent border-2 border-transparent hover:border-[#6445AB] before:absolute before:inset-0 before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10 transition-all duration-300"
+                      className="relative bg-transparent text-smolder-text hover:bg-transparent border-2 border-[#6445AB] before:absolute before:inset-0 before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10 transition-all duration-300 hover:border-opacity-80"
                     >
                       Proceed -$3.00
                     </Button>

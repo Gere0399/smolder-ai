@@ -13,7 +13,6 @@ const Create = () => {
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      // Skip if the target is a textarea or has scrollable content
       if (
         e.target instanceof HTMLElement && 
         (e.target.tagName === 'TEXTAREA' || 
@@ -68,20 +67,20 @@ const Create = () => {
           <div className="flex items-end space-x-4">
             <button
               onClick={() => setActiveTab('yours')}
-              className={`text-xl font-semibold ${
+              className={`transition-all duration-200 ${
                 activeTab === 'yours' 
-                  ? 'text-white' 
-                  : 'text-smolder-text/60 hover:text-smolder-text/80'
+                  ? 'text-xl font-semibold text-white' 
+                  : 'text-lg text-smolder-text/60 hover:text-smolder-text/80'
               }`}
             >
               Your creations
             </button>
             <button
               onClick={() => setActiveTab('others')}
-              className={`text-lg text-smolder-text/60 hover:text-smolder-text/80 ${
+              className={`transition-all duration-200 ${
                 activeTab === 'others' 
-                  ? 'text-white' 
-                  : ''
+                  ? 'text-xl font-semibold text-white' 
+                  : 'text-lg text-smolder-text/60 hover:text-smolder-text/80'
               }`}
             >
               Created by others
@@ -144,7 +143,7 @@ const Create = () => {
                 )}
                 <Textarea 
                   placeholder="Create a new concept: 3d sculpture of a golden bird"
-                  className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8"
+                  className="min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 text-[15px] scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8"
                 />
                 <input
                   type="file"
@@ -162,7 +161,7 @@ const Create = () => {
                   </button>
                   <div className="flex items-center gap-2 text-sm">
                     <Box className="w-4 h-4 text-gray-500" />
-                    <span className="text-gray-500">3D prints</span>
+                    <span className="text-gray-500 font-medium">3D prints</span>
                   </div>
                 </div>
                 <div className="absolute bottom-2 right-4">

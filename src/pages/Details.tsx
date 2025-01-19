@@ -142,9 +142,9 @@ const Details = () => {
 
           <div className="col-span-12 lg:col-span-4">
             <Card className="rounded-xl border-smolder-border">
-              <div className="p-6 space-y-8">
+              <div className="p-6 space-y-6">
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2 mb-2">
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
                     <div className="text-sm text-smolder-text/60">/current-total-costs</div>
                   </div>
@@ -181,7 +181,7 @@ const Details = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-smolder-text mb-4">Full Prompt:</h3>
+                  <h3 className="text-lg font-medium text-smolder-text mb-3">Full Prompt:</h3>
                   <div className="max-h-32 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
                     <p className="text-sm text-smolder-text/80">
                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -194,7 +194,7 @@ const Details = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-smolder-text mb-4">
+                  <h3 className="text-lg font-medium text-smolder-text mb-3">
                     Printing materials & colors
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -265,7 +265,7 @@ const Details = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-smolder-text mb-4">
+                  <h3 className="text-lg font-medium text-smolder-text mb-3">
                     Next steps for your delivered 3D model
                   </h3>
                   <div className="space-y-3">

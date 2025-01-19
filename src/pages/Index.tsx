@@ -41,18 +41,19 @@ const Index = () => {
         timeout = setTimeout(() => {
           isDeleting = true;
           type();
-        }, 1500);
+        }, 1000); // Reduced pause at the end from 1500ms to 1000ms
         return;
       }
 
       if (isDeleting && currentChar === 0) {
         isDeleting = false;
         currentIndex = (currentIndex + 1) % prompts.length;
-        timeout = setTimeout(type, 500);
+        timeout = setTimeout(type, 200); // Reduced pause between prompts from 500ms to 200ms
         return;
       }
 
-      timeout = setTimeout(type, isDeleting ? 50 : 100);
+      timeout = setTimeout(type, isDeleting ? 25 : 50); // Reduced typing speed from 50/100ms to 25/50ms
+
     };
 
     type();
@@ -169,4 +170,3 @@ const Index = () => {
 };
 
 export default Index;
-

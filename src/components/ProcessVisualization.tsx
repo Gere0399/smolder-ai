@@ -1,13 +1,13 @@
 export const ProcessVisualization = () => {
   return (
-    <div className="relative h-full">
+    <div className="relative h-full pl-12">
       <img 
-        src="/lovable-uploads/8da448a8-5740-4ee2-a077-49f0b11fd2d3.png" 
+        src="/lovable-uploads/61ee0890-c41b-4d33-b715-3c8390000b1c.png" 
         alt="Process visualization" 
         className="w-full h-auto"
       />
       
-      <div className="absolute left-8 top-[80px] bottom-16 w-0.5 bg-smolder-border/20"></div>
+      <div className="absolute left-8 top-[80px] bottom-16 w-0.5 bg-white/10"></div>
     </div>
   );
 };

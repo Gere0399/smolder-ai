@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Navbar } from "@/components/Navbar";
 import { Link } from "react-router-dom";
-import { Google, Facebook, Eye, EyeOff } from "lucide-react";
+import { Facebook, Eye, EyeOff, Chrome } from "lucide-react";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +18,7 @@ export default function Login() {
             className="w-full bg-[#222222] text-white hover:bg-[#2a2a2a] border-none h-12"
             onClick={() => console.log("Google login")}
           >
-            <Google className="mr-2" />
+            <Chrome className="mr-2" />
             Continue with Google
           </Button>
           

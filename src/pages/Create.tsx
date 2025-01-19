@@ -105,7 +105,7 @@ const Create = () => {
                       alt="Concept preview"
                       className="w-full h-full object-cover"
                     />
-                    <button className="absolute bottom-4 right-4 px-4 py-1.5 text-sm bg-black/40 text-white rounded-md backdrop-blur-sm hover:bg-black/50 transition-colors">
+                    <button className="absolute bottom-3 right-4 px-4 py-1.5 text-sm bg-black/40 text-white rounded-md backdrop-blur-sm hover:bg-black/50 transition-colors">
                       See details
                     </button>
                   </div>

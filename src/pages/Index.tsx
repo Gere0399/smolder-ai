@@ -6,7 +6,7 @@ import { Paperclip } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-smolder-bg text-smolder-text">
+    <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
       
       <main className="pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -18,14 +18,14 @@ const Index = () => {
             
             <div className="relative">
               <textarea
-                className="w-full h-32 bg-smolder-muted rounded-lg p-4 text-white placeholder-smolder-text/50 focus:outline-none focus:ring-2 focus:ring-smolder-accent resize-none"
+                className="w-full h-32 bg-smolder-muted/20 backdrop-blur-sm rounded-lg p-4 text-white placeholder-smolder-text/50 focus:outline-none focus:ring-2 focus:ring-smolder-accent resize-none border border-smolder-border/20"
                 placeholder="Create a 3d sculpture of a golden bird"
               />
               <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="text-smolder-text hover:text-white">
                   <Paperclip className="w-5 h-5" />
                 </Button>
-                <Button className="bg-smolder-accent hover:bg-smolder-accent/90">
+                <Button className="bg-white hover:bg-white/90 text-black">
                   Create
                 </Button>
               </div>

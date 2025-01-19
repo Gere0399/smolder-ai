@@ -61,12 +61,12 @@ const Create = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((item) => (
               <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden">
-                <div className="p-1.5 flex items-center space-x-2">
-                  <Box className="text-[#C6B47F]" size={18} />
-                  <span className="text-[#C6B47F] text-sm">concept</span>
+                <div className="p-1 flex items-center space-x-2">
+                  <Box className="text-[#C6B47F]" size={16} />
+                  <span className="text-[#C6B47F] text-xs">concept</span>
                 </div>
                 <CardContent className="p-0">
-                  <div className="relative aspect-square bg-white">
+                  <div className="relative aspect-[4/3] bg-white">
                     <img
                       src="/placeholder.svg"
                       alt="Concept preview"
@@ -76,7 +76,7 @@ const Create = () => {
                       See details
                     </button>
                   </div>
-                  <div className="p-4 pt-5">
+                  <div className="p-4 pt-6 pb-8">
                     <p className="text-sm text-smolder-text">
                       This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem
                     </p>

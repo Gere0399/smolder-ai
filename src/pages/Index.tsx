@@ -19,21 +19,25 @@ const Index = () => {
       <main className="pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-8">
-            <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight max-w-xl">
+            <h1 className="text-5xl font-bold text-white leading-[1.1] max-w-xl tracking-tight">
               Bridge the gap between your imagination and the physical world
             </h1>
             
             <div className="relative max-w-xl">
               <textarea
-                className="w-full h-24 bg-white rounded-lg p-4 text-[15px] text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-smolder-accent resize-none"
+                className="w-full h-[100px] bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-[15px] text-white/90 placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/20 resize-none"
                 placeholder="Create a 3d sculpture of a golden bird"
               />
-              <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-                <Button variant="ghost" size="icon" className="text-gray-500 hover:text-gray-700">
+              <div className="absolute bottom-6 right-6 flex items-center space-x-3">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-white/50 hover:text-white/80 hover:bg-white/5"
+                >
                   <Paperclip className="w-5 h-5" />
                 </Button>
                 <Button 
-                  className="bg-black hover:bg-black/90 text-white px-6"
+                  className="bg-white/10 hover:bg-white/15 text-white px-6 rounded-xl backdrop-blur-sm"
                   onClick={handleCreate}
                 >
                   Create

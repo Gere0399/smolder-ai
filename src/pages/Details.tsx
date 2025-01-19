@@ -1,4 +1,4 @@
-import { ArrowLeft, Heart, Link as LinkIcon, ArrowRight, Download, Plus } from "lucide-react";
+import { ArrowLeft, Heart, Link as LinkIcon, ArrowRight, Download, Plus, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -18,10 +18,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Details = () => {
   const statusRef = useRef<HTMLDivElement>(null);
+  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
+  const [selectedColors, setSelectedColors] = useState<{name: string, color: string}[]>([]);
 
   useEffect(() => {
     const scrollStatus = () => {
@@ -29,14 +31,30 @@ const Details = () => {
         if (statusRef.current.scrollLeft >= statusRef.current.scrollWidth - statusRef.current.clientWidth) {
           statusRef.current.scrollLeft = 0;
         } else {
-          statusRef.current.scrollLeft += 1;
+          statusRef.current.scrollLeft += 0.5; // Slower scroll speed
         }
       }
     };
 
-    const intervalId = setInterval(scrollStatus, 50);
+    const intervalId = setInterval(scrollStatus, 20); // More frequent updates for smoother animation
     return () => clearInterval(intervalId);
   }, []);
+
+  const handleAddMaterial = (material: string) => {
+    setSelectedMaterials(prev => [...prev, material]);
+  };
+
+  const handleAddColor = (name: string, color: string) => {
+    setSelectedColors(prev => [...prev, { name, color }]);
+  };
+
+  const handleRemoveMaterial = (material: string) => {
+    setSelectedMaterials(prev => prev.filter(m => m !== material));
+  };
+
+  const handleRemoveColor = (colorName: string) => {
+    setSelectedColors(prev => prev.filter(c => c.name !== colorName));
+  };
 
   return (
     <div className="min-h-screen bg-smolder-bg">
@@ -75,7 +93,7 @@ const Details = () => {
               </Button>
             </div>
             
-            <div className="mt-3 text-sm text-smolder-text/60">Made by SmolderAI group</div>
+            <div className="mt-8 text-sm text-smolder-text/60">Made by SmolderAI group</div>
             
             <Button 
               variant="outline" 
@@ -189,35 +207,57 @@ const Details = () => {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-56">
                         <DropdownMenuLabel>Materials</DropdownMenuLabel>
-                        <DropdownMenuItem>PLA</DropdownMenuItem>
-                        <DropdownMenuItem>ABS</DropdownMenuItem>
-                        <DropdownMenuItem>PETG</DropdownMenuItem>
+                        {["PLA", "ABS", "PETG"].map((material) => (
+                          <DropdownMenuItem 
+                            key={material}
+                            onClick={() => handleAddMaterial(material)}
+                          >
+                            {material}
+                          </DropdownMenuItem>
+                        ))}
                         <DropdownMenuSeparator />
                         <DropdownMenuLabel>Colors</DropdownMenuLabel>
-                        <DropdownMenuItem className="flex items-center gap-2">
-                          <span className="w-3 h-3 rounded-full bg-[#FEA500]"></span>
-                          Orange
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="flex items-center gap-2">
-                          <span className="w-3 h-3 rounded-full bg-[#4A4A4A]"></span>
-                          Dark Gray
-                        </DropdownMenuItem>
+                        {[
+                          { name: "Orange", color: "#FEA500" },
+                          { name: "Dark Gray", color: "#4A4A4A" }
+                        ].map((color) => (
+                          <DropdownMenuItem 
+                            key={color.name}
+                            onClick={() => handleAddColor(color.name, color.color)}
+                          >
+                            <span className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: color.color }}></span>
+                            {color.name}
+                          </DropdownMenuItem>
+                        ))}
                       </DropdownMenuContent>
                     </DropdownMenu>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                    >
-                      <span className="mr-1">🛠️</span> PLA ×
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                    >
-                      <span className="w-3 h-3 rounded-full bg-[#FEA500] mr-1"></span> #FEA500 ×
-                    </Button>
+                    
+                    {selectedMaterials.map((material) => (
+                      <Button 
+                        key={material}
+                        variant="outline" 
+                        size="sm" 
+                        className="rounded-lg bg-transparent border-smolder-border text-smolder-text group"
+                        onClick={() => handleRemoveMaterial(material)}
+                      >
+                        <span className="mr-1">🛠️</span> {material}
+                        <X className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </Button>
+                    ))}
+                    
+                    {selectedColors.map((color) => (
+                      <Button 
+                        key={color.name}
+                        variant="outline" 
+                        size="sm" 
+                        className="rounded-lg bg-transparent border-smolder-border text-smolder-text group"
+                        onClick={() => handleRemoveColor(color.name)}
+                      >
+                        <span className="w-3 h-3 rounded-full mr-1" style={{ backgroundColor: color.color }}></span>
+                        {color.name}
+                        <X className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </Button>
+                    ))}
                   </div>
                 </div>
 

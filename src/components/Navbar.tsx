@@ -10,7 +10,7 @@ export const Navbar = () => {
             <Link to="/" className="text-[#FF6B81] font-semibold text-xl">Smolder AI</Link>
           </div>
           <div className="flex items-center">
-            <div className="flex items-center space-x-4 mr-8">
+            <div className="flex items-center space-x-4 mr-32">
               <Link to="/create">
                 <Button 
                   variant="ghost" 

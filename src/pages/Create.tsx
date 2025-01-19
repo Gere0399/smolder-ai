@@ -33,7 +33,7 @@ const Create = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
-      <main className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-24">
+      <main className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto py-24">
         <div className="space-y-4">
           <div className="flex items-end space-x-4">
             <button
@@ -58,9 +58,9 @@ const Create = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((item) => (
-              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden">
+              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-full max-w-[280px]">
                 <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
                   <span className="text-[#C6B47F] text-sm">concept</span>

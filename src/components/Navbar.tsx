@@ -9,12 +9,14 @@ export const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="text-smolder-accent font-semibold text-xl">Smolder AI</Link>
           </div>
-          <div className="flex items-center space-x-4">
-            <Link to="/create">
-              <Button variant="ghost" className="text-smolder-text hover:text-white">Create</Button>
-            </Link>
-            <Button variant="ghost" className="text-smolder-text hover:text-white">Discord</Button>
-            <Button variant="ghost" className="text-smolder-text hover:text-white">Terms of service</Button>
+          <div className="flex items-center">
+            <div className="flex items-center space-x-6 mr-8">
+              <Link to="/create">
+                <Button variant="ghost" className="text-smolder-text hover:text-white">Create</Button>
+              </Link>
+              <Button variant="ghost" className="text-smolder-text hover:text-white">Discord</Button>
+              <Button variant="ghost" className="text-smolder-text hover:text-white">Terms of service</Button>
+            </div>
             <Button className="bg-white hover:bg-white/90 text-black">Login</Button>
           </div>
         </div>

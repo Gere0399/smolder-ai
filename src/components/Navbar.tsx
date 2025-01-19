@@ -12,10 +12,25 @@ export const Navbar = () => {
           <div className="flex items-center">
             <div className="flex items-center space-x-4 mr-16">
               <Link to="/create">
-                <Button variant="ghost" className="text-white/90 hover:text-white">Create</Button>
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41]"
+                >
+                  Create
+                </Button>
               </Link>
-              <Button variant="ghost" className="text-white/90 hover:text-white">Discord</Button>
-              <Button variant="ghost" className="text-white/90 hover:text-white">Terms of service</Button>
+              <Button 
+                variant="ghost" 
+                className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41]"
+              >
+                Discord
+              </Button>
+              <Button 
+                variant="ghost" 
+                className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41]"
+              >
+                Terms of service
+              </Button>
             </div>
             <Button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-6">Login</Button>
           </div>

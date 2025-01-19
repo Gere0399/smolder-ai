@@ -61,6 +61,10 @@ export default {
           text: "#E1E1E3",
           muted: "#2A2833",
           border: "#342F44",
+          gradient: {
+            from: "#6445AB",
+            to: "#7E3F41",
+          },
         },
       },
       borderRadius: {

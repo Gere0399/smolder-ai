@@ -67,12 +67,12 @@ const Create = () => {
           {/* Prompt Box */}
           <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl">
             <div className="bg-white rounded-2xl shadow-lg mx-4">
-              <div className="relative">
+              <div className="relative pb-14"> {/* Added padding bottom for button spacing */}
                 <Textarea 
                   placeholder="Create a new concept: 3d sculpture of a golden bird"
-                  className="min-h-[72px] w-full resize-none border-0 bg-transparent px-6 py-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500"
+                  className="min-h-[72px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-black rounded-2xl placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent"
                 />
-                <div className="absolute bottom-4 left-4 flex items-center gap-4">
+                <div className="absolute bottom-2 left-4 flex items-center gap-4">
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                     <Paperclip className="w-5 h-5 text-gray-400" />
                   </button>
@@ -81,7 +81,7 @@ const Create = () => {
                     <span className="text-gray-500">3D prints</span>
                   </div>
                 </div>
-                <div className="absolute bottom-4 right-4">
+                <div className="absolute bottom-2 right-4">
                   <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90 rounded-lg px-6">
                     Create
                   </Button>

@@ -91,7 +91,7 @@ const Index = () => {
                   />
                   <div className="absolute bottom-2 left-4">
                     <button 
-                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                      className="p-2 hover:bg-gray-100 active:bg-gray-200 rounded-lg transition-colors"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <Paperclip className="w-5 h-5 text-gray-400" />

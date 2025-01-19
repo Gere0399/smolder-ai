@@ -55,8 +55,8 @@ export const PromptBox = ({
             value={prompt}
             onChange={(e) => onPromptChange(e.target.value)}
             className={`min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-[16px] rounded-2xl ${
-              prompt ? 'text-gray-900' : 'text-gray-400'
-            } placeholder:text-gray-400 placeholder:font-[500] scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8`}
+              prompt ? 'text-gray-900' : 'text-gray-500'
+            } placeholder:text-gray-500 placeholder:font-normal scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8`}
           />
           <input
             type="file"

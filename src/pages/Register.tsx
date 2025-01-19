@@ -16,7 +16,7 @@ export default function Register() {
         <div className="space-y-6">
           <Button 
             variant="outline" 
-            className="w-full bg-[#222222] text-white hover:bg-[#2a2a2a] border-none h-12"
+            className="w-full bg-[#222222] text-white hover:bg-[#2a2a2a] border-none h-12 transition-all duration-300 hover:scale-105"
             onClick={() => console.log("Google signup")}
           >
             <svg viewBox="0 0 48 48" className="w-5 h-5 mr-2">
@@ -76,7 +76,7 @@ export default function Register() {
           </div>
 
           <Button 
-            className="w-full h-12 bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:opacity-90"
+            className="w-full h-12 bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:opacity-90 transition-all duration-300 hover:scale-105"
           >
             Sign Up
           </Button>

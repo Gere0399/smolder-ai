@@ -144,7 +144,7 @@ const Details = () => {
             <Card className="rounded-xl border-smolder-border">
               <div className="p-6 space-y-8">
                 <div>
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex items-center gap-2 mb-3">
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
                     <div className="text-sm text-smolder-text/60">/current-total-costs</div>
                   </div>

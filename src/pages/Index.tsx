@@ -3,8 +3,15 @@ import { CreationTabs } from "@/components/CreationTabs";
 import { ProcessVisualization } from "@/components/ProcessVisualization";
 import { Button } from "@/components/ui/button";
 import { Paperclip } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+
+  const handleCreate = () => {
+    navigate("/create");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
@@ -25,7 +32,10 @@ const Index = () => {
                 <Button variant="ghost" size="icon" className="text-smolder-text hover:text-white">
                   <Paperclip className="w-5 h-5" />
                 </Button>
-                <Button className="bg-white hover:bg-white/90 text-black">
+                <Button 
+                  className="bg-white hover:bg-white/90 text-black"
+                  onClick={handleCreate}
+                >
                   Create
                 </Button>
               </div>

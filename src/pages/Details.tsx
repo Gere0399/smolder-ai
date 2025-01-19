@@ -70,7 +70,7 @@ const Details = () => {
           {/* Center column - Main Image */}
           <div className="col-span-12 lg:col-span-5">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
-              <div className="relative aspect-[4/5]">
+              <div className="relative aspect-[4/3]">
                 <img 
                   src="/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png"
                   alt="Concept preview" 
@@ -106,18 +106,33 @@ const Details = () => {
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
                     <div className="text-sm text-smolder-text/60">/current-total-costs</div>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-smolder-text">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      Ready
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      Print & delivery to you
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      Discord staff 24/7
+                  <div className="relative w-full overflow-hidden h-6">
+                    <div className="animate-[scroll_20s_linear_infinite] whitespace-nowrap flex items-center gap-4 text-sm text-smolder-text absolute">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        Ready
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        Print & delivery to you
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        Discord staff 24/7
+                      </div>
+                      {/* Duplicate for seamless loop */}
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        Ready
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        Print & delivery to you
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        Discord staff 24/7
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -152,7 +167,7 @@ const Details = () => {
                           <Plus className="w-4 h-4" /> Add
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-56">
+                      <DropdownMenuContent className="w-56 bg-smolder-muted border-smolder-border">
                         <DropdownMenuLabel>Materials</DropdownMenuLabel>
                         <DropdownMenuItem>PLA</DropdownMenuItem>
                         <DropdownMenuItem>ABS</DropdownMenuItem>
@@ -209,7 +224,7 @@ const Details = () => {
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
                     <Button 
-                      className="bg-transparent text-smolder-text hover:bg-gradient-to-r from-smolder-gradient-from to-smolder-gradient-to border border-smolder-border transition-all duration-300"
+                      className="relative bg-transparent text-smolder-text hover:bg-transparent border-0 before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 before:content-['']"
                     >
                       Proceed -$3.00
                     </Button>

@@ -1,8 +1,16 @@
-import { ArrowLeft, Heart, Link as LinkIcon, ArrowRight } from "lucide-react";
+import { ArrowLeft, Heart, Link as LinkIcon, ArrowRight, Download, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import {
   Carousel,
   CarouselContent,
@@ -62,7 +70,7 @@ const Details = () => {
           {/* Center column - Main Image */}
           <div className="col-span-12 lg:col-span-5">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
-              <div className="relative aspect-[3/4]">
+              <div className="relative aspect-[4/5]">
                 <img 
                   src="/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png"
                   alt="Concept preview" 
@@ -77,6 +85,13 @@ const Details = () => {
                 >
                   Modify idea
                 </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full"
+                >
+                  <Download className="w-4 h-4" />
+                </Button>
               </div>
             </Card>
           </div>
@@ -87,20 +102,20 @@ const Details = () => {
               <div className="p-6 space-y-8">
                 {/* Price and status */}
                 <div>
-                  <div className="flex justify-between items-start mb-6">
+                  <div className="flex items-center gap-2 mb-6">
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
                     <div className="text-sm text-smolder-text/60">/current-total-costs</div>
                   </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-smolder-text">
+                  <div className="flex items-center gap-4 text-sm text-smolder-text">
+                    <div className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                       Ready
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-smolder-text">
+                    <div className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Print & delivery to you
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-smolder-text">
+                    <div className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                       Discord staff 24/7
                     </div>
@@ -110,12 +125,15 @@ const Details = () => {
                 {/* Full prompt */}
                 <div>
                   <h3 className="text-lg font-medium text-smolder-text mb-4">Full Prompt:</h3>
-                  <p className="text-sm text-smolder-text/80">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type 
-                    specimen book.
-                  </p>
+                  <div className="max-h-32 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+                    <p className="text-sm text-smolder-text/80">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                      when an unknown printer took a galley of type and scrambled it to make a type 
+                      specimen book. It has survived not only five centuries, but also the leap into 
+                      electronic typesetting, remaining essentially unchanged.
+                    </p>
+                  </div>
                 </div>
 
                 {/* Materials & colors */}
@@ -124,6 +142,33 @@ const Details = () => {
                     Printing materials & colors
                   </h3>
                   <div className="flex flex-wrap gap-2">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
+                        >
+                          <Plus className="w-4 h-4" /> Add
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-56">
+                        <DropdownMenuLabel>Materials</DropdownMenuLabel>
+                        <DropdownMenuItem>PLA</DropdownMenuItem>
+                        <DropdownMenuItem>ABS</DropdownMenuItem>
+                        <DropdownMenuItem>PETG</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuLabel>Colors</DropdownMenuLabel>
+                        <DropdownMenuItem className="flex items-center gap-2">
+                          <span className="w-3 h-3 rounded-full bg-[#FEA500]"></span>
+                          Orange
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="flex items-center gap-2">
+                          <span className="w-3 h-3 rounded-full bg-[#4A4A4A]"></span>
+                          Dark Gray
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                     <Button 
                       variant="outline" 
                       size="sm" 
@@ -137,13 +182,6 @@ const Details = () => {
                       className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
                     >
                       <span className="w-3 h-3 rounded-full bg-[#FEA500] mr-1"></span> #FEA500 ×
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                    >
-                      <span className="w-3 h-3 rounded-full bg-[#4A4A4A] mr-1"></span> #4A4A4A ×
                     </Button>
                   </div>
                 </div>
@@ -170,7 +208,9 @@ const Details = () => {
                   </div>
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
-                    <Button className="bg-transparent text-smolder-text hover:bg-smolder-border border border-smolder-border">
+                    <Button 
+                      className="bg-transparent text-smolder-text hover:bg-gradient-to-r from-smolder-gradient-from to-smolder-gradient-to border border-smolder-border transition-all duration-300"
+                    >
                       Proceed -$3.00
                     </Button>
                   </div>
@@ -202,6 +242,13 @@ const Details = () => {
                            "DELIVERY TO YOU"}
                         </span>
                       </div>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full"
+                      >
+                        <Download className="w-4 h-4" />
+                      </Button>
                     </div>
                   </Card>
                 </CarouselItem>

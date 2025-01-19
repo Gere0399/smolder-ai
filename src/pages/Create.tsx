@@ -33,7 +33,7 @@ const Create = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
-      <main className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto py-24">
+      <main className="px-4 sm:px-6 lg:px-8 max-w-[90rem] mx-auto py-24">
         <div className="space-y-4">
           <div className="flex items-end space-x-4">
             <button
@@ -58,9 +58,9 @@ const Create = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[1, 2, 3].map((item) => (
-              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-full max-w-[360px]">
+          <div className="flex overflow-x-auto pb-4 space-x-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <Card key={item} className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0">
                 <div className="py-3 flex items-center justify-center space-x-2">
                   <Box className="text-[#C6B47F]" size={16} />
                   <span className="text-[#C6B47F] text-sm">concept</span>
@@ -89,8 +89,8 @@ const Create = () => {
           </div>
 
           {/* Prompt Box */}
-          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-xl">
-            <div className="bg-white rounded-2xl shadow-lg mx-4">
+          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
+            <div className="bg-white rounded-2xl shadow-lg">
               <div className="relative pb-14">
                 {attachedImage && (
                   <div className="flex px-6 pt-4">

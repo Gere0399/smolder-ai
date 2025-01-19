@@ -71,7 +71,7 @@ const Details = () => {
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
       
-      <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-gradient-to-r from-smolder-gradient-from/80 to-smolder-gradient-to/80 backdrop-blur-md' : ''}`} />
+      <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-black/50 backdrop-blur-md' : ''}`} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <div className="grid grid-cols-12 gap-8">

@@ -132,9 +132,9 @@ const Details = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full w-10 h-10 flex items-center justify-center"
+                  className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-md hover:bg-black/60 rounded-full w-10 h-10 flex items-center justify-center border-0"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-4 h-4 text-white" />
                 </Button>
               </div>
             </Card>
@@ -321,9 +321,9 @@ const Details = () => {
                       <Button
                         variant="outline"
                         size="icon"
-                        className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full w-10 h-10 flex items-center justify-center"
+                        className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-md hover:bg-black/60 rounded-full w-10 h-10 flex items-center justify-center border-0"
                       >
-                        <Download className="w-4 h-4" />
+                        <Download className="w-4 h-4 text-white" />
                       </Button>
                     </div>
                   </Card>

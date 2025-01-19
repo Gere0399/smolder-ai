@@ -62,7 +62,7 @@ const Plans = () => {
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="text-center mb-8">
           <div className="inline-flex items-center bg-smolder-muted rounded-full p-1">
             <button

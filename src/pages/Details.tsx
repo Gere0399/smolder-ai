@@ -1,4 +1,4 @@
-import { ArrowLeft, Heart, Link as LinkIcon } from "lucide-react";
+import { ArrowLeft, Heart, Link as LinkIcon, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -62,7 +62,7 @@ const Details = () => {
           {/* Center column - Main Image */}
           <div className="col-span-12 lg:col-span-5">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
-              <div className="relative aspect-[4/5]">
+              <div className="relative aspect-[3/4]">
                 <img 
                   src="/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png"
                   alt="Concept preview" 
@@ -83,7 +83,7 @@ const Details = () => {
 
           {/* Right column - Details */}
           <div className="col-span-12 lg:col-span-4">
-            <Card className="bg-smolder-muted rounded-xl overflow-hidden">
+            <Card className="bg-smolder-muted rounded-xl">
               <div className="p-6 space-y-8">
                 {/* Price and status */}
                 <div>
@@ -176,7 +176,7 @@ const Details = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
         </div>
 

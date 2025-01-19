@@ -19,12 +19,18 @@ export const Navbar = () => {
                   Create
                 </Button>
               </Link>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:scale-110 transition-transform duration-200 hover:bg-transparent"
+              <a 
+                href="https://discord.gg/uahMNyxd4h" 
+                target="_blank" 
+                rel="noopener noreferrer"
               >
-                Discord
-              </Button>
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:scale-110 transition-transform duration-200 hover:bg-transparent"
+                >
+                  Discord
+                </Button>
+              </a>
               <Button 
                 variant="ghost" 
                 className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:scale-110 transition-transform duration-200 hover:bg-transparent"

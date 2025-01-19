@@ -77,7 +77,7 @@ const Index = () => {
                     </div>
                   )}
                   <textarea
-                    className="w-full min-h-[100px] bg-transparent rounded-xl p-6 text-[16px] text-gray-800 placeholder:text-gray-900 placeholder:font-[500] focus:outline-none focus:ring-0 resize-none"
+                    className="w-full min-h-[100px] bg-transparent rounded-xl p-6 text-[18px] text-gray-800 placeholder:text-gray-900 placeholder:font-[500] focus:outline-none focus:ring-0 resize-none"
                     placeholder="Create a 3d sculpture of a golden bird"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}

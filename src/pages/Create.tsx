@@ -76,7 +76,7 @@ const Create = () => {
                       See details
                     </button>
                   </div>
-                  <div className="p-4 pt-6 pb-8">
+                  <div className="p-4 pt-4 pb-5">
                     <div className="max-h-24 overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted hover:scrollbar-thumb-smolder-accent/50">
                       <p className="text-sm text-smolder-text">
                         This is a prompt sample which created the starting image concept, lorem ipsum ipsum lorem. This text can now scroll if it gets too long and extends beyond the visible area. The content will remain contained within its designated space while allowing users to scroll through longer descriptions.

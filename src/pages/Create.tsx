@@ -69,8 +69,8 @@ const Create = () => {
               onClick={() => setActiveTab('yours')}
               className={`transition-all duration-200 ${
                 activeTab === 'yours' 
-                  ? 'text-xl font-semibold text-white' 
-                  : 'text-lg text-smolder-text/60 hover:text-smolder-text/80'
+                  ? 'text-2xl font-semibold text-white' 
+                  : 'text-base text-smolder-text/60 hover:text-smolder-text/80'
               }`}
             >
               Your creations
@@ -79,8 +79,8 @@ const Create = () => {
               onClick={() => setActiveTab('others')}
               className={`transition-all duration-200 ${
                 activeTab === 'others' 
-                  ? 'text-xl font-semibold text-white' 
-                  : 'text-lg text-smolder-text/60 hover:text-smolder-text/80'
+                  ? 'text-2xl font-semibold text-white' 
+                  : 'text-base text-smolder-text/60 hover:text-smolder-text/80'
               }`}
             >
               Created by others

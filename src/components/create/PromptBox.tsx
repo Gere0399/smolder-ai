@@ -30,11 +30,11 @@ export const PromptBox = ({
   };
 
   return (
-    <div className="fixed bottom-4 sm:bottom-8 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 w-full max-w-2xl sm:px-4">
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
       <div className="bg-white rounded-2xl shadow-lg prompt-box">
         <div className="relative pb-14">
           {attachedImage && (
-            <div className="flex px-4 sm:px-6 pt-4">
+            <div className="flex px-6 pt-4">
               <div className="relative w-12 h-12 flex-shrink-0">
                 <img
                   src={attachedImage}
@@ -54,7 +54,7 @@ export const PromptBox = ({
             placeholder="Create a 3d sculpture of a golden bird"
             value={prompt}
             onChange={(e) => onPromptChange(e.target.value)}
-            className={`min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-4 sm:px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-[18px] rounded-2xl ${
+            className={`min-h-[96px] max-h-[200px] w-full resize-y overflow-y-auto border-0 bg-transparent px-6 py-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-[18px] rounded-2xl ${
               prompt ? 'text-gray-900' : 'text-gray-500'
             } placeholder:text-gray-500 placeholder:font-normal scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent pr-8`}
           />
@@ -74,7 +74,7 @@ export const PromptBox = ({
             </button>
           </div>
           <div className="absolute bottom-2 right-4">
-            <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90 rounded-lg px-4 sm:px-6">
+            <Button className="bg-[#13111C] text-white hover:bg-[#13111C]/90 rounded-lg px-6">
               Create
             </Button>
           </div>

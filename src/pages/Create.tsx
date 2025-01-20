@@ -12,13 +12,14 @@ const Create = () => {
   const [attachedImage, setAttachedImage] = useState<string | null>(initialImage);
 
   useEffect(() => {
+    // Animation class for sliding in
     const promptBox = document.querySelector('.prompt-box');
     if (promptBox) {
       promptBox.classList.add('animate-slide-in');
     }
     
     return () => {
-      clear();
+      clear(); // Clear the store when unmounting
     };
   }, [clear]);
 
@@ -33,8 +34,8 @@ const Create = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-[#0D0D17] via-[#121117] to-[#6C383A]">
       <Navbar />
-      <main className="px-4 sm:px-6 lg:px-8 max-w-[90rem] mx-auto py-24 sm:py-28">
-        <div className="space-y-4 sm:space-y-6">
+      <main className="px-4 sm:px-6 lg:px-8 max-w-[90rem] mx-auto py-24">
+        <div className="space-y-4">
           <CreationHeader 
             activeTab={activeTab} 
             onTabChange={setActiveTab} 

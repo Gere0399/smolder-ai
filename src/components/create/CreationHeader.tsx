@@ -9,7 +9,7 @@ interface CreationHeaderProps {
 
 export const CreationHeader = ({ activeTab, onTabChange }: CreationHeaderProps) => {
   return (
-    <div className="flex items-end space-x-4">
+    <div className="flex items-end space-x-4 whitespace-nowrap">
       <button
         onClick={() => onTabChange('yours')}
         className={`transition-all duration-200 ${

@@ -13,7 +13,7 @@ export const CreationCard = ({ index }: CreationCardProps) => {
 
   return (
     <Link to="/product">
-      <Card className="bg-[#13111C] border-smolder-border overflow-hidden w-[360px] flex-shrink-0 cursor-pointer">
+      <Card className="bg-[#13111C] border-smolder-border overflow-hidden w-[280px] sm:w-[320px] md:w-[360px] flex-shrink-0 cursor-pointer">
         <div className="py-3 flex items-center justify-center space-x-2">
           <Box className="text-[#C6B47F]" size={16} />
           <span className="text-[#C6B47F] text-base">concept</span>

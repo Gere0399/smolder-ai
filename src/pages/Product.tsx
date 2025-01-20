@@ -68,15 +68,15 @@ const Details = () => {
   };
 
   return (
-    <div className="min-h-screen bg-smolder-bg">
+    <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
       <Navbar />
       
       <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-black/50 backdrop-blur-md' : ''}`} />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 w-full overflow-x-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
           {/* Left Column - Title and Info */}
-          <div className="col-span-12 lg:col-span-3 px-2 sm:px-0">
+          <div className="col-span-12 lg:col-span-3 w-full">
             <Link 
               to="/create" 
               className="inline-flex items-center text-smolder-text hover:text-smolder-accent transition-colors"
@@ -85,7 +85,7 @@ const Details = () => {
               <span className="text-lg">Back</span>
             </Link>
             
-            <h1 className="mt-4 text-3xl font-semibold text-smolder-text">
+            <h1 className="mt-4 text-3xl font-semibold text-smolder-text break-words">
               3D - This is the prompt resumed as a title for easy access
             </h1>
             
@@ -114,7 +114,7 @@ const Details = () => {
           </div>
 
           {/* Middle Column - Main Image */}
-          <div className="col-span-12 lg:col-span-5 px-2 sm:px-0">
+          <div className="col-span-12 lg:col-span-5 w-full">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
               <div className="relative aspect-[4/5]">
                 <img 
@@ -137,8 +137,8 @@ const Details = () => {
           </div>
 
           {/* Right Column - Details Card */}
-          <div className="col-span-12 lg:col-span-4 px-2 sm:px-0">
-            <Card className="rounded-xl border-smolder-border">
+          <div className="col-span-12 lg:col-span-4 w-full">
+            <Card className="rounded-xl border-smolder-border w-full">
               <div className="p-6 space-y-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -295,12 +295,12 @@ const Details = () => {
         </div>
 
         {/* Bottom Carousel */}
-        <div className="mt-12 mb-8">
+        <div className="mt-12 mb-8 max-w-7xl mx-auto">
           <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-            <Carousel className="w-full px-2 sm:px-0">
-              <CarouselContent>
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
                 {[1, 2, 3, 4, 5].map((index) => (
-                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
+                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/5">
                     <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
                       <div className="relative aspect-video">
                         <img 

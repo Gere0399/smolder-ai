@@ -226,8 +226,8 @@ export default function Terms() {
           </div>
 
           <div className="w-full lg:w-64 order-first lg:order-last">
-            <div className="lg:sticky lg:top-32">
-              <div className="lg:h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-transparent">
+            <div className="fixed lg:w-64">
+              <div className="max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-transparent pr-4">
                 <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
                 <nav className="space-y-1">
                   {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (

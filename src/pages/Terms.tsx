@@ -61,7 +61,7 @@ export default function Terms() {
         </div>
 
         <div className="flex gap-12">
-          <div className="flex-1 max-w-5xl">
+          <div className="flex-1 max-w-5xl pl-8"> {/* Added pl-8 here for left padding */}
             <Tabs 
               defaultValue="terms" 
               className="space-y-8"

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Separator } from "@/components/ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { DirectionProvider } from "@radix-ui/react-direction";
 
 export default function Terms() {
   const navigate = useNavigate();
@@ -71,28 +72,29 @@ export default function Terms() {
   };
 
   return (
-    <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
-      <Navbar />
-      
-      <div 
-        className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 
-          ${isScrolled ? 'bg-black/40 backdrop-blur-xl' : ''}`} 
-      />
+    <DirectionProvider dir="ltr">
+      <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
+        <Navbar />
+        
+        <div 
+          className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 
+            ${isScrolled ? 'bg-black/40 backdrop-blur-xl' : ''}`} 
+        />
 
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8 pl-4 sm:pl-32"> {/* Increased left padding here */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate(-1)}
-            className="text-white/90 hover:text-white hover:bg-transparent hover:scale-110 transition-transform"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="text-2xl sm:text-4xl font-semibold text-white ml-4">
-            {getTitleFromTab(activeTab)}
-          </h1>
-        </div>
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+          <div className="flex items-center mb-8 pl-4 sm:pl-32">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate(-1)}
+              className="text-white/90 hover:text-white hover:bg-transparent hover:scale-110 transition-transform"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <h1 className="text-2xl sm:text-4xl font-semibold text-white ml-4">
+              {getTitleFromTab(activeTab)}
+            </h1>
+          </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-32"> {/* Increased left padding here */}
           {/* Mobile Table of Contents */}
@@ -292,6 +294,8 @@ export default function Terms() {
           <span>Top</span>
         </button>
       )}
-    </div>
+        </div>
+      </div>
+    </DirectionProvider>
   );
 }

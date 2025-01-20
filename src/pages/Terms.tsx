@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -10,6 +10,19 @@ export default function Terms() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("terms");
   
+  const getTitleFromTab = (tab: string) => {
+    switch(tab) {
+      case "terms": return "Terms of Service";
+      case "privacy": return "Privacy Policy";
+      case "cookies": return "Cookie Policy";
+      default: return "Terms of Service";
+    }
+  };
+
+  useEffect(() => {
+    document.title = getTitleFromTab(activeTab);
+  }, [activeTab]);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -54,11 +67,11 @@ export default function Terms() {
             variant="ghost"
             size="icon"
             onClick={() => navigate(-1)}
-            className="text-white/90 hover:text-white hover:bg-transparent"
+            className="text-white/90 hover:text-white hover:bg-transparent hover:scale-110 transition-transform"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-2xl font-semibold text-white ml-4">Legal</h1>
+          <h1 className="text-4xl font-semibold text-white ml-4">{getTitleFromTab(activeTab)}</h1>
         </div>
 
         <div className="flex gap-12 pl-16">

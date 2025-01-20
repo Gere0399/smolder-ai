@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
+import { Separator } from "@/components/ui/separator";
 
 export default function Terms() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ export default function Terms() {
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8">
+        <div className="flex items-center mb-8 pl-16">
           <Button
             variant="ghost"
             size="icon"
@@ -60,8 +61,8 @@ export default function Terms() {
           <h1 className="text-2xl font-semibold text-white ml-4">Legal</h1>
         </div>
 
-        <div className="flex gap-12">
-          <div className="flex-1 max-w-5xl pl-8"> {/* Added pl-8 here for left padding */}
+        <div className="flex gap-12 pl-16">
+          <div className="flex-1 max-w-5xl">
             <Tabs 
               defaultValue="terms" 
               className="space-y-8"
@@ -93,6 +94,7 @@ export default function Terms() {
                   <div className="prose prose-invert max-w-none">
                     <h2 className="text-xl font-semibold mb-4">Terms of Service</h2>
                     <p className="mb-4">Last updated: March 14, 2024</p>
+                    <Separator className="my-6" />
                     
                     <div id="section1">
                       <h3 className="text-lg font-semibold mb-3">1. Acceptance of Terms</h3>
@@ -125,7 +127,8 @@ export default function Terms() {
                   <div className="prose prose-invert max-w-none">
                     <h2 className="text-xl font-semibold mb-4">Privacy Policy</h2>
                     <p className="mb-4">Last updated: March 14, 2024</p>
-
+                    <Separator className="my-6" />
+                    
                     <div id="section1">
                       <h3 className="text-lg font-semibold mb-3">1. What Personal Information we collect</h3>
                       <p className="mb-4">We collect information that you provide directly to us, including: name, email address, postal address, phone number, and any other information you choose to provide. We also automatically collect certain information about your device when you use our services, including: IP address, web browser type, operating system version, mobile device identifier, and usage information about your interactions with our services.</p>
@@ -157,7 +160,8 @@ export default function Terms() {
                   <div className="prose prose-invert max-w-none">
                     <h2 className="text-xl font-semibold mb-4">Cookie Policy</h2>
                     <p className="mb-4">Last updated: March 14, 2024</p>
-
+                    <Separator className="my-6" />
+                    
                     <div id="section1">
                       <h3 className="text-lg font-semibold mb-3">1. What are cookies</h3>
                       <p className="mb-4">Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to the owners of the site. Cookies help provide additional functionality to the site or help us analyze site usage more accurately.</p>

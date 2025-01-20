@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Separator } from "@/components/ui/separator";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Terms() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("terms");
+  const isMobile = useIsMobile();
   
   const getTitleFromTab = (tab: string) => {
     switch(tab) {
@@ -225,15 +227,26 @@ export default function Terms() {
                 ))}
               </nav>
             </div>
-            <button
-              onClick={scrollToTop}
-              className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors mt-8"
-            >
-              Back to top
-            </button>
+            {!isMobile && (
+              <button
+                onClick={scrollToTop}
+                className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors mt-8"
+              >
+                Back to top
+              </button>
+            )}
           </div>
         </div>
       </div>
+      {isMobile && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-4 right-4 h-8 px-3 text-xs bg-smolder-accent/90 hover:bg-smolder-accent text-white rounded-md flex items-center gap-1 shadow-lg transition-colors"
+        >
+          <ArrowUp className="h-3 w-3" />
+          <span>Top</span>
+        </button>
+      )}
     </div>
   );
 }

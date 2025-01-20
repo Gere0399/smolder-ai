@@ -73,9 +73,10 @@ const Details = () => {
       
       <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-black/50 backdrop-blur-md' : ''}`} />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 w-full overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="col-span-12 lg:col-span-3">
+          {/* Left Column - Title and Info */}
+          <div className="col-span-12 lg:col-span-3 px-2 sm:px-0">
             <Link 
               to="/create" 
               className="inline-flex items-center text-smolder-text hover:text-smolder-accent transition-colors"
@@ -84,7 +85,7 @@ const Details = () => {
               <span className="text-lg">Back</span>
             </Link>
             
-            <h1 className="mt-4 text-3xl font-semibold text-smolder-text max-w-2xl">
+            <h1 className="mt-4 text-3xl font-semibold text-smolder-text">
               3D - This is the prompt resumed as a title for easy access
             </h1>
             
@@ -112,7 +113,8 @@ const Details = () => {
             </Button>
           </div>
 
-          <div className="col-span-12 lg:col-span-5">
+          {/* Middle Column - Main Image */}
+          <div className="col-span-12 lg:col-span-5 px-2 sm:px-0">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
               <div className="relative aspect-[4/5]">
                 <img 
@@ -134,7 +136,8 @@ const Details = () => {
             </Card>
           </div>
 
-          <div className="col-span-12 lg:col-span-4">
+          {/* Right Column - Details Card */}
+          <div className="col-span-12 lg:col-span-4 px-2 sm:px-0">
             <Card className="rounded-xl border-smolder-border">
               <div className="p-6 space-y-6">
                 <div>
@@ -291,12 +294,13 @@ const Details = () => {
           </div>
         </div>
 
-        <div className="mt-12 mb-8 -mx-4 sm:mx-0">
+        {/* Bottom Carousel */}
+        <div className="mt-12 mb-8">
           <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-            <Carousel className="w-full">
+            <Carousel className="w-full px-2 sm:px-0">
               <CarouselContent>
                 {[1, 2, 3, 4, 5].map((index) => (
-                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5 pl-4">
+                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
                     <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
                       <div className="relative aspect-video">
                         <img 

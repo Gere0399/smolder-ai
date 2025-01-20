@@ -226,33 +226,35 @@ export default function Terms() {
           </div>
 
           <div className="w-full lg:w-64 order-first lg:order-last">
-            <div className="lg:sticky lg:top-32 space-y-6">
-              <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
-              <nav className="space-y-1">
-                {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
-                  <a 
-                    key={index}
-                    href={`#section${index + 1}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(`section${index + 1}`);
-                    }}
-                    className="block text-sm text-white/70 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </a>
-                ))}
-              </nav>
-              {!isMobile && (
-                <div className="lg:sticky lg:bottom-8">
-                  <button
-                    onClick={scrollToTop}
-                    className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors"
-                  >
-                    Back to top
-                  </button>
-                </div>
-              )}
+            <div className="lg:sticky lg:top-32">
+              <div className="space-y-6">
+                <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
+                <nav className="space-y-1">
+                  {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
+                    <a 
+                      key={index}
+                      href={`#section${index + 1}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(`section${index + 1}`);
+                      }}
+                      className="block text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </nav>
+                {!isMobile && (
+                  <div className="pt-6">
+                    <button
+                      onClick={scrollToTop}
+                      className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors"
+                    >
+                      Back to top
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

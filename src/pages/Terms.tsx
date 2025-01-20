@@ -71,7 +71,9 @@ export default function Terms() {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-2xl sm:text-4xl font-semibold text-white ml-4">{getTitleFromTab(activeTab)}</h1>
+          <h1 className="text-2xl sm:text-4xl font-semibold text-white ml-4">
+            {getTitleFromTab(activeTab)}
+          </h1>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-16">
@@ -83,24 +85,24 @@ export default function Terms() {
             >
               <div className="overflow-x-auto">
                 <TabsList className="bg-transparent border-b border-smolder-border w-fit h-auto p-0 space-x-4 sm:space-x-8 mb-4">
-                <TabsTrigger 
-                  value="terms"
-                  className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
-                >
-                  Terms of Service
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="privacy"
-                  className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
-                >
-                  Privacy Policy
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="cookies"
-                  className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
-                >
-                  Cookie Policy
-                </TabsTrigger>
+                  <TabsTrigger 
+                    value="terms"
+                    className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
+                  >
+                    Terms of Service
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="privacy"
+                    className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
+                  >
+                    Privacy Policy
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="cookies"
+                    className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
+                  >
+                    Cookie Policy
+                  </TabsTrigger>
                 </TabsList>
               </div>
 
@@ -206,30 +208,29 @@ export default function Terms() {
 
           <div className="w-full lg:w-64 order-first lg:order-last">
             <div className="sticky top-32 space-y-6">
-                <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
-                <nav className="space-y-1">
-                  {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
-                    <a 
-                      key={index}
-                      href={`#section${index + 1}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(`section${index + 1}`);
-                      }}
-                      className="block text-sm text-white/70 hover:text-white"
-                    >
-                      {item}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-              <button
-                onClick={scrollToTop}
-                className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors mt-8"
-              >
-                Back to top
-              </button>
+              <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
+              <nav className="space-y-1">
+                {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
+                  <a 
+                    key={index}
+                    href={`#section${index + 1}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(`section${index + 1}`);
+                    }}
+                    className="block text-sm text-white/70 hover:text-white"
+                  >
+                    {item}
+                  </a>
+                ))}
+              </nav>
             </div>
+            <button
+              onClick={scrollToTop}
+              className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors mt-8"
+            >
+              Back to top
+            </button>
           </div>
         </div>
       </div>

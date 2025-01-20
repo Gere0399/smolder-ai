@@ -96,8 +96,7 @@ export default function Terms() {
             </h1>
           </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-32"> {/* Increased left padding here */}
-          {/* Mobile Table of Contents */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-32">
           {isMobile && (
             <div className="sticky top-24 z-20 bg-smolder-bg/95 backdrop-blur-sm border-b border-smolder-border pb-4">
               <div className="overflow-x-auto">
@@ -121,7 +120,7 @@ export default function Terms() {
             </div>
           )}
 
-          <div className="flex-1 max-w-5xl">
+            <div className="flex-1 max-w-5xl">
             <Tabs 
               defaultValue="terms" 
               className="space-y-8"
@@ -249,8 +248,8 @@ export default function Terms() {
               </div>
             </Tabs>
           </div>
+            </div>
 
-          {/* Desktop Table of Contents */}
           {!isMobile && (
             <div className="w-full lg:w-64 order-first lg:order-last">
               <div className="fixed lg:w-64">
@@ -283,18 +282,18 @@ export default function Terms() {
               </div>
             </div>
           )}
+          </div>
         </div>
-      </div>
-      {isMobile && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-4 right-4 h-8 px-3 text-xs bg-smolder-accent/90 hover:bg-smolder-accent text-white rounded-md flex items-center gap-1 shadow-lg transition-colors"
-        >
-          <ArrowUp className="h-3 w-3" />
-          <span>Top</span>
-        </button>
-      )}
-        </div>
+
+        {isMobile && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-4 right-4 h-8 px-3 text-xs bg-smolder-accent/90 hover:bg-smolder-accent text-white rounded-md flex items-center gap-1 shadow-lg transition-colors"
+          >
+            <ArrowUp className="h-3 w-3" />
+            <span>Top</span>
+          </button>
+        )}
       </div>
     </DirectionProvider>
   );

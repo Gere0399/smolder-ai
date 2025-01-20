@@ -71,7 +71,11 @@ const Details = () => {
     <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
       <Navbar />
       
-      <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-black/50 backdrop-blur-md' : ''}`} />
+      {/* Updated backdrop styling */}
+      <div 
+        className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 
+          ${isScrolled ? 'bg-black/40 backdrop-blur-xl' : ''}`} 
+      />
       
       <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">

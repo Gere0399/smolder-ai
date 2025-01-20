@@ -62,7 +62,7 @@ export default function Terms() {
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8 pl-16">
+        <div className="flex items-center mb-8">
           <Button
             variant="ghost"
             size="icon"
@@ -74,14 +74,14 @@ export default function Terms() {
           <h1 className="text-4xl font-semibold text-white ml-4">{getTitleFromTab(activeTab)}</h1>
         </div>
 
-        <div className="flex gap-12 pl-16">
+        <div className="flex gap-12">
           <div className="flex-1 max-w-5xl">
             <Tabs 
               defaultValue="terms" 
               className="space-y-8"
               onValueChange={(value) => setActiveTab(value)}
             >
-              <TabsList className="bg-transparent border-b border-smolder-border w-full h-auto p-0 space-x-8">
+              <TabsList className="bg-transparent border-b border-smolder-border w-fit h-auto p-0 space-x-8">
                 <TabsTrigger 
                   value="terms"
                   className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
@@ -105,7 +105,6 @@ export default function Terms() {
               <div className="pr-6">
                 <TabsContent value="terms" className="mt-0">
                   <div className="prose prose-invert max-w-none">
-                    <h2 className="text-xl font-semibold mb-4">Terms of Service</h2>
                     <p className="mb-4">Last updated: March 14, 2024</p>
                     <Separator className="my-6" />
                     
@@ -138,7 +137,6 @@ export default function Terms() {
 
                 <TabsContent value="privacy" className="mt-0">
                   <div className="prose prose-invert max-w-none">
-                    <h2 className="text-xl font-semibold mb-4">Privacy Policy</h2>
                     <p className="mb-4">Last updated: March 14, 2024</p>
                     <Separator className="my-6" />
                     
@@ -171,7 +169,6 @@ export default function Terms() {
 
                 <TabsContent value="cookies" className="mt-0">
                   <div className="prose prose-invert max-w-none">
-                    <h2 className="text-xl font-semibold mb-4">Cookie Policy</h2>
                     <p className="mb-4">Last updated: March 14, 2024</p>
                     <Separator className="my-6" />
                     

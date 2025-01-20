@@ -96,6 +96,30 @@ export default function Terms() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-16">
+          {/* Mobile Table of Contents */}
+          {isMobile && (
+            <div className="sticky top-24 z-20 bg-smolder-bg/95 backdrop-blur-sm border-b border-smolder-border pb-4">
+              <div className="overflow-x-auto">
+                <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
+                <nav className="space-y-1">
+                  {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
+                    <a 
+                      key={index}
+                      href={`#section${index + 1}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(`section${index + 1}`);
+                      }}
+                      className="block text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          )}
+
           <div className="flex-1 max-w-5xl">
             <Tabs 
               defaultValue="terms" 
@@ -225,26 +249,27 @@ export default function Terms() {
             </Tabs>
           </div>
 
-          <div className="w-full lg:w-64 order-first lg:order-last">
-            <div className="fixed lg:w-64">
-              <div className="max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-transparent pr-4">
-                <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
-                <nav className="space-y-1">
-                  {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
-                    <a 
-                      key={index}
-                      href={`#section${index + 1}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(`section${index + 1}`);
-                      }}
-                      className="block text-sm text-white/70 hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  ))}
-                </nav>
-                {!isMobile && (
+          {/* Desktop Table of Contents */}
+          {!isMobile && (
+            <div className="w-full lg:w-64 order-first lg:order-last">
+              <div className="fixed lg:w-64">
+                <div className="max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-transparent pr-4">
+                  <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
+                  <nav className="space-y-1">
+                    {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (
+                      <a 
+                        key={index}
+                        href={`#section${index + 1}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection(`section${index + 1}`);
+                        }}
+                        className="block text-sm text-white/70 hover:text-white transition-colors"
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </nav>
                   <div className="pt-6">
                     <button
                       onClick={scrollToTop}
@@ -253,10 +278,10 @@ export default function Terms() {
                       Back to top
                     </button>
                   </div>
-                )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       {isMobile && (

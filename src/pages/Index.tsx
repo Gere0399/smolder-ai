@@ -127,7 +127,7 @@ const Index = () => {
                   <textarea
                     className={`w-full min-h-[100px] bg-transparent rounded-xl p-6 text-[18px] ${
                       prompt ? 'text-gray-900' : 'text-gray-400'
-                    } placeholder:text-gray-400 placeholder:font-[500] focus:outline-none focus:ring-0 resize-none`}
+                    } placeholder:text-gray-400 placeholder:font-[500] focus:outline-none focus:ring-0 resize-none pr-12 scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gray-300 scrollbar-track-transparent`}
                     placeholder={placeholderText}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}

@@ -58,7 +58,6 @@ export default function Terms() {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-2xl font-semibold text-white ml-4">Legal</h1>
         </div>
 
         <div className="flex gap-12 pl-16">

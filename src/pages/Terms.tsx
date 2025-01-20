@@ -11,6 +11,7 @@ export default function Terms() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("terms");
   const isMobile = useIsMobile();
+  const [isScrolled, setIsScrolled] = useState(false);
   
   const getTitleFromTab = (tab: string) => {
     switch(tab) {
@@ -24,6 +25,15 @@ export default function Terms() {
   useEffect(() => {
     document.title = getTitleFromTab(activeTab);
   }, [activeTab]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -61,8 +71,15 @@ export default function Terms() {
   };
 
   return (
-    <div className="min-h-screen bg-smolder-bg">
+    <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
       <Navbar />
+      
+      {/* Added backdrop for tabs */}
+      <div 
+        className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 
+          ${isScrolled ? 'bg-black/40 backdrop-blur-xl' : ''}`} 
+      />
+
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="flex items-center mb-8 pl-4 sm:pl-16">
           <Button
@@ -85,7 +102,7 @@ export default function Terms() {
               className="space-y-8"
               onValueChange={(value) => setActiveTab(value)}
             >
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto sticky top-24 bg-smolder-bg z-20">
                 <TabsList className="bg-transparent border-b border-smolder-border w-fit h-auto p-0 space-x-4 sm:space-x-8 mb-4">
                   <TabsTrigger 
                     value="terms"
@@ -226,15 +243,15 @@ export default function Terms() {
                   </a>
                 ))}
               </nav>
+              {!isMobile && (
+                <button
+                  onClick={scrollToTop}
+                  className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors mt-8 sticky bottom-8"
+                >
+                  Back to top
+                </button>
+              )}
             </div>
-            {!isMobile && (
-              <button
-                onClick={scrollToTop}
-                className="text-sm text-smolder-accent hover:text-smolder-accent/80 transition-colors mt-8"
-              >
-                Back to top
-              </button>
-            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -49,16 +48,16 @@ export default function Terms() {
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8 pl-4">
+        <div className="flex items-center mb-8">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => navigate(-1)}
-            className="text-white/90 hover:text-white hover:bg-transparent mr-4"
+            className="text-white/90 hover:text-white hover:bg-transparent"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-2xl font-semibold text-white">Legal</h1>
+          <h1 className="text-2xl font-semibold text-white ml-4">Legal</h1>
         </div>
 
         <div className="flex gap-12">
@@ -89,7 +88,7 @@ export default function Terms() {
                 </TabsTrigger>
               </TabsList>
 
-              <ScrollArea className="h-[60vh] pr-6">
+              <div className="pr-6">
                 <TabsContent value="terms" className="mt-0">
                   <div className="prose prose-invert max-w-none">
                     <h2 className="text-xl font-semibold mb-4">Terms of Service</h2>
@@ -185,7 +184,7 @@ export default function Terms() {
                     </div>
                   </div>
                 </TabsContent>
-              </ScrollArea>
+              </div>
             </Tabs>
           </div>
 

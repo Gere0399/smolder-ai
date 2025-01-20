@@ -39,12 +39,14 @@ export const Navbar = () => {
                   Discord
                 </Button>
               </a>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:scale-110 transition-transform duration-200 hover:bg-transparent"
-              >
-                Terms of service
-              </Button>
+              <Link to="/terms">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-[#6445AB] to-[#7E3F41] hover:scale-110 transition-transform duration-200 hover:bg-transparent"
+                >
+                  Legal terms
+                </Button>
+              </Link>
             </div>
             <Link to="/login">
               <Button 

@@ -45,6 +45,19 @@ export default function Terms() {
     }
   };
   
+  const getActiveTitle = () => {
+    switch(activeTab) {
+      case "terms":
+        return "Terms of Service";
+      case "privacy":
+        return "Privacy Policy";
+      case "cookies":
+        return "Cookie Policy";
+      default:
+        return "Terms of Service";
+    }
+  };
+  
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
@@ -62,6 +75,7 @@ export default function Terms() {
 
         <div className="flex gap-12 pl-16">
           <div className="flex-1 max-w-5xl">
+            <h1 className="text-3xl font-semibold text-white mb-8">{getActiveTitle()}</h1>
             <Tabs 
               defaultValue="terms" 
               className="space-y-8"

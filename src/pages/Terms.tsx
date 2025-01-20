@@ -57,12 +57,12 @@ export default function Terms() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8">
+        <div className="flex items-center mb-8 pl-16">
           <Button
             variant="ghost"
             size="icon"
@@ -74,7 +74,7 @@ export default function Terms() {
           <h1 className="text-4xl font-semibold text-white ml-4">{getTitleFromTab(activeTab)}</h1>
         </div>
 
-        <div className="flex gap-12">
+        <div className="flex gap-12 pl-16">
           <div className="flex-1 max-w-5xl">
             <Tabs 
               defaultValue="terms" 

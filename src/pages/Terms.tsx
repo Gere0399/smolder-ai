@@ -12,81 +12,110 @@ export default function Terms() {
   return (
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        <div className="flex items-center mb-8 pl-4">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => navigate(-1)}
-            className="text-white/90 hover:text-white hover:bg-smolder-muted"
+            className="text-white/90 hover:text-white hover:bg-transparent mr-4"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-2xl font-semibold text-white ml-4">Legal</h1>
+          <h1 className="text-2xl font-semibold text-white">Legal</h1>
         </div>
 
-        <Tabs defaultValue="terms" className="space-y-8">
-          <TabsList className="bg-smolder-muted w-full justify-start h-12 p-1">
-            <TabsTrigger 
-              value="terms"
-              className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-6"
-            >
-              Terms of Service
-            </TabsTrigger>
-            <TabsTrigger 
-              value="privacy"
-              className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-6"
-            >
-              Privacy Policy
-            </TabsTrigger>
-            <TabsTrigger 
-              value="cookies"
-              className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-6"
-            >
-              Cookie Policy
-            </TabsTrigger>
-          </TabsList>
+        <div className="flex gap-12">
+          <div className="flex-1 max-w-4xl">
+            <Tabs defaultValue="terms" className="space-y-8">
+              <TabsList className="bg-transparent w-fit h-10 p-1">
+                <TabsTrigger 
+                  value="terms"
+                  className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-4"
+                >
+                  Terms of Service
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="privacy"
+                  className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-4"
+                >
+                  Privacy Policy
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="cookies"
+                  className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-4"
+                >
+                  Cookie Policy
+                </TabsTrigger>
+              </TabsList>
 
-          <ScrollArea className="h-[60vh] rounded-md border border-smolder-border bg-smolder-muted p-6">
-            <TabsContent value="terms" className="mt-0">
-              <div className="prose prose-invert max-w-none">
-                <h2 className="text-xl font-semibold mb-4">Terms of Service</h2>
-                <p className="mb-4">Last updated: March 14, 2024</p>
-                <p className="mb-4">Welcome to Smolder AI. By accessing our website, you agree to these terms of service.</p>
-                <h3 className="text-lg font-semibold mb-3">1. Acceptance of Terms</h3>
-                <p className="mb-4">By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
+              <ScrollArea className="h-[60vh] pr-6">
+                <TabsContent value="terms" className="mt-0">
+                  <div className="prose prose-invert max-w-none">
+                    <h2 className="text-xl font-semibold mb-4">Terms of Service</h2>
+                    <p className="mb-4">Last updated: March 14, 2024</p>
+                    <p className="mb-4">Welcome to Smolder AI. By accessing our website, you agree to these terms of service.</p>
+                    <h3 className="text-lg font-semibold mb-3">1. Acceptance of Terms</h3>
+                    <p className="mb-4">By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
                 <h3 className="text-lg font-semibold mb-3">2. Use License</h3>
                 <p className="mb-4">Permission is granted to temporarily download one copy of the materials (information or software) on Smolder AI's website for personal, non-commercial transitory viewing only.</p>
                 <h3 className="text-lg font-semibold mb-3">3. Disclaimer</h3>
                 <p className="mb-4">The materials on Smolder AI's website are provided on an 'as is' basis. Smolder AI makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
-              </div>
-            </TabsContent>
+                  </div>
+                </TabsContent>
 
-            <TabsContent value="privacy" className="mt-0">
-              <div className="prose prose-invert max-w-none">
-                <h2 className="text-xl font-semibold mb-4">Privacy Policy</h2>
-                <p className="mb-4">Last updated: March 14, 2024</p>
-                <p className="mb-4">Your privacy is important to us. It is Smolder AI's policy to respect your privacy regarding any information we may collect from you across our website.</p>
+                <TabsContent value="privacy" className="mt-0">
+                  <div className="prose prose-invert max-w-none">
+                    <h2 className="text-xl font-semibold mb-4">Privacy Policy</h2>
+                    <p className="mb-4">Last updated: March 14, 2024</p>
+                    <p className="mb-4">Your privacy is important to us. It is Smolder AI's policy to respect your privacy regarding any information we may collect from you across our website.</p>
+                    <h3 className="text-lg font-semibold mb-3">Table of Contents</h3>
+                    <ol className="list-decimal list-inside mb-6">
+                      <li>What Personal Information we collect</li>
+                      <li>How we use your information</li>
+                      <li>Information sharing and disclosure</li>
+                      <li>Data retention and deletion</li>
+                      <li>Your rights and choices</li>
+                      <li>Security measures</li>
+                      <li>International data transfers</li>
+                      <li>Changes to this policy</li>
+                      <li>Contact us</li>
+                    </ol>
                 <h3 className="text-lg font-semibold mb-3">Information We Collect</h3>
                 <p className="mb-4">We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent.</p>
                 <h3 className="text-lg font-semibold mb-3">Data Protection</h3>
                 <p className="mb-4">We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we'll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.</p>
-              </div>
-            </TabsContent>
+                  </div>
+                </TabsContent>
 
-            <TabsContent value="cookies" className="mt-0">
-              <div className="prose prose-invert max-w-none">
-                <h2 className="text-xl font-semibold mb-4">Cookie Policy</h2>
-                <p className="mb-4">Last updated: March 14, 2024</p>
-                <p className="mb-4">This Cookie Policy explains how Smolder AI uses cookies and similar technologies to recognize you when you visit our website.</p>
+                <TabsContent value="cookies" className="mt-0">
+                  <div className="prose prose-invert max-w-none">
+                    <h2 className="text-xl font-semibold mb-4">Cookie Policy</h2>
+                    <p className="mb-4">Last updated: March 14, 2024</p>
+                    <p className="mb-4">This Cookie Policy explains how Smolder AI uses cookies and similar technologies to recognize you when you visit our website.</p>
                 <h3 className="text-lg font-semibold mb-3">What are cookies?</h3>
                 <p className="mb-4">Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.</p>
                 <h3 className="text-lg font-semibold mb-3">How we use cookies</h3>
                 <p className="mb-4">We use cookies for several purposes, including to track your preferences and profile information, and to customize the content shown to you. Additionally, cookies help us to process your transactions and requests, verify your identity, and prevent fraud.</p>
-              </div>
-            </TabsContent>
-          </ScrollArea>
-        </Tabs>
+                  </div>
+                </TabsContent>
+              </ScrollArea>
+            </Tabs>
+          </div>
+
+          <div className="w-64 hidden lg:block">
+            <div className="sticky top-32">
+              <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
+              <nav className="space-y-1">
+                <a href="#section1" className="block text-sm text-white/70 hover:text-white">What Personal Information we collect</a>
+                <a href="#section2" className="block text-sm text-white/70 hover:text-white">How we use your information</a>
+                <a href="#section3" className="block text-sm text-white/70 hover:text-white">Information sharing</a>
+                <a href="#section4" className="block text-sm text-white/70 hover:text-white">Security measures</a>
+                <a href="#section5" className="block text-sm text-white/70 hover:text-white">Your rights</a>
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

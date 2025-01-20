@@ -16,13 +16,10 @@ export const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              className="text-white/90"
+            <Menu 
+              className="h-8 w-8 text-white/90 hover:text-white transition-colors cursor-pointer" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
+            />
           </div>
 
           {/* Desktop menu */}
@@ -79,11 +76,11 @@ export const Navbar = () => {
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="flex flex-col space-y-2 pb-4">
+            <div className="flex flex-col space-y-2 pb-4 bg-smolder-bg/95 backdrop-blur-sm rounded-lg p-4 border border-smolder-border">
               <Link to="/create">
                 <Button 
                   variant="ghost" 
-                  className="w-full text-left text-white/90 justify-start"
+                  className="w-full text-left text-white/90 justify-start hover:bg-smolder-muted"
                 >
                   Create
                 </Button>
@@ -91,7 +88,7 @@ export const Navbar = () => {
               <Link to="/plans">
                 <Button 
                   variant="ghost" 
-                  className="w-full text-left text-white/90 justify-start"
+                  className="w-full text-left text-white/90 justify-start hover:bg-smolder-muted"
                 >
                   Pricing
                 </Button>
@@ -103,7 +100,7 @@ export const Navbar = () => {
               >
                 <Button 
                   variant="ghost" 
-                  className="w-full text-left text-white/90 justify-start"
+                  className="w-full text-left text-white/90 justify-start hover:bg-smolder-muted"
                 >
                   Discord
                 </Button>
@@ -111,7 +108,7 @@ export const Navbar = () => {
               <Link to="/terms">
                 <Button 
                   variant="ghost" 
-                  className="w-full text-left text-white/90 justify-start"
+                  className="w-full text-left text-white/90 justify-start hover:bg-smolder-muted"
                 >
                   Legal terms
                 </Button>
@@ -119,7 +116,7 @@ export const Navbar = () => {
               <Link to="/login">
                 <Button 
                   variant="ghost" 
-                  className="w-full text-left text-white/90 justify-start"
+                  className="w-full text-left text-white/90 justify-start hover:bg-smolder-muted"
                 >
                   Login
                 </Button>

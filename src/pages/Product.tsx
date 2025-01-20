@@ -74,7 +74,7 @@ const Details = () => {
       <div className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 ${isScrolled ? 'bg-black/50 backdrop-blur-md' : ''}`} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="col-span-12 lg:col-span-3">
             <Link 
               to="/create" 
@@ -291,42 +291,44 @@ const Details = () => {
           </div>
         </div>
 
-        <div className="mt-12 mb-8">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {[1, 2, 3, 4, 5].map((index) => (
-                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
-                  <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
-                    <div className="relative aspect-video">
-                      <img 
-                        src={`/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png`}
-                        alt={`Step ${index}`}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-md">
-                        <span className="text-white text-sm font-medium">
-                          {index === 1 ? "CONCEPT" : 
-                           index === 2 ? "3D" :
-                           index === 3 ? "PRINTABLE FILE" :
-                           index === 4 ? "PRINTING 3D MODEL" :
-                           "DELIVERY TO YOU"}
-                        </span>
+        <div className="mt-12 mb-8 -mx-4 sm:mx-0">
+          <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5 pl-4">
+                    <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
+                      <div className="relative aspect-video">
+                        <img 
+                          src={`/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png`}
+                          alt={`Step ${index}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-md">
+                          <span className="text-white text-sm font-medium">
+                            {index === 1 ? "CONCEPT" : 
+                             index === 2 ? "3D" :
+                             index === 3 ? "PRINTABLE FILE" :
+                             index === 4 ? "PRINTING 3D MODEL" :
+                             "DELIVERY TO YOU"}
+                          </span>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="absolute bottom-1 right-2 bg-black/50 backdrop-blur-md hover:bg-black/60 rounded-full w-10 h-10 flex items-center justify-center border-0"
+                        >
+                          <Download className="w-4 h-4 text-white" />
+                        </Button>
                       </div>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="absolute bottom-1 right-2 bg-black/50 backdrop-blur-md hover:bg-black/60 rounded-full w-10 h-10 flex items-center justify-center border-0"
-                      >
-                        <Download className="w-4 h-4 text-white" />
-                      </Button>
-                    </div>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          </div>
         </div>
       </main>
     </div>

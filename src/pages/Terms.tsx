@@ -62,7 +62,7 @@ export default function Terms() {
     <div className="min-h-screen bg-smolder-bg">
       <Navbar />
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8 pl-16">
+        <div className="flex items-center mb-8 pl-4 sm:pl-16">
           <Button
             variant="ghost"
             size="icon"
@@ -71,17 +71,18 @@ export default function Terms() {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-4xl font-semibold text-white ml-4">{getTitleFromTab(activeTab)}</h1>
+          <h1 className="text-2xl sm:text-4xl font-semibold text-white ml-4">{getTitleFromTab(activeTab)}</h1>
         </div>
 
-        <div className="flex gap-12 pl-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-16">
           <div className="flex-1 max-w-5xl">
             <Tabs 
               defaultValue="terms" 
               className="space-y-8"
               onValueChange={(value) => setActiveTab(value)}
             >
-              <TabsList className="bg-transparent border-b border-smolder-border w-fit h-auto p-0 space-x-8">
+              <div className="overflow-x-auto">
+                <TabsList className="bg-transparent border-b border-smolder-border w-fit h-auto p-0 space-x-4 sm:space-x-8 mb-4">
                 <TabsTrigger 
                   value="terms"
                   className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
@@ -100,9 +101,10 @@ export default function Terms() {
                 >
                   Cookie Policy
                 </TabsTrigger>
-              </TabsList>
+                </TabsList>
+              </div>
 
-              <div className="pr-6">
+              <div className="pr-0 lg:pr-6">
                 <TabsContent value="terms" className="mt-0">
                   <div className="prose prose-invert max-w-none">
                     <p className="mb-4">Last updated: March 14, 2024</p>
@@ -202,9 +204,8 @@ export default function Terms() {
             </Tabs>
           </div>
 
-          <div className="w-64 hidden lg:block">
+          <div className="w-full lg:w-64 order-first lg:order-last">
             <div className="sticky top-32 space-y-6">
-              <div>
                 <h3 className="text-sm font-medium text-white/90 mb-3">Table of contents</h3>
                 <nav className="space-y-1">
                   {tableOfContents[activeTab as keyof typeof tableOfContents].map((item, index) => (

@@ -81,22 +81,22 @@ export default function Terms() {
               className="space-y-8"
               onValueChange={(value) => setActiveTab(value)}
             >
-              <TabsList className="bg-transparent w-fit h-8 p-1">
+              <TabsList className="bg-transparent border-b border-smolder-border w-full h-auto p-0 space-x-8">
                 <TabsTrigger 
                   value="terms"
-                  className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-3 text-sm"
+                  className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
                 >
                   Terms of Service
                 </TabsTrigger>
                 <TabsTrigger 
                   value="privacy"
-                  className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-3 text-sm"
+                  className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
                 >
                   Privacy Policy
                 </TabsTrigger>
                 <TabsTrigger 
                   value="cookies"
-                  className="data-[state=active]:bg-smolder-accent data-[state=active]:text-white px-3 text-sm"
+                  className="text-sm px-0 py-4 data-[state=active]:bg-transparent data-[state=active]:text-smolder-accent data-[state=active]:border-b-2 data-[state=active]:border-smolder-accent rounded-none transition-colors"
                 >
                   Cookie Policy
                 </TabsTrigger>

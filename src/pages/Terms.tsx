@@ -74,14 +74,13 @@ export default function Terms() {
     <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
       <Navbar />
       
-      {/* Added backdrop for tabs */}
       <div 
         className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 
           ${isScrolled ? 'bg-black/40 backdrop-blur-xl' : ''}`} 
       />
 
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="flex items-center mb-8 pl-4 sm:pl-16">
+        <div className="flex items-center mb-8 pl-4 sm:pl-32"> {/* Increased left padding here */}
           <Button
             variant="ghost"
             size="icon"
@@ -95,7 +94,7 @@ export default function Terms() {
           </h1>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 px-4 sm:pl-32"> {/* Increased left padding here */}
           {/* Mobile Table of Contents */}
           {isMobile && (
             <div className="sticky top-24 z-20 bg-smolder-bg/95 backdrop-blur-sm border-b border-smolder-border pb-4">

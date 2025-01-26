@@ -2,7 +2,7 @@ import { fal } from "@fal-ai/client";
 
 // Initialize the fal client with the API key
 fal.config({
-  credentials: process.env.FAL_KEY,
+  credentials: import.meta.env.FAL_KEY,
 });
 
 export const generateConceptImage = async (prompt: string) => {

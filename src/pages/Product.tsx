@@ -1,81 +1,42 @@
+import { useState } from "react";
 import { ArrowLeft, Link as LinkIcon, ArrowRight, Download, Plus, X } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { useEffect, useRef, useState } from "react";
+import { ThreeDViewer } from "@/components/product/ThreeDViewer";
+import { generateConceptImage, convertToThreeD } from "@/utils/falApi";
 
-const Details = () => {
-  const statusRef = useRef<HTMLDivElement>(null);
-  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<{name: string, color: string} | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+const Product = () => {
+  const [currentStep, setCurrentStep] = useState<"concept" | "3d">("concept");
+  const [conceptImage, setConceptImage] = useState<string>("/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png");
+  const [threeDModel, setThreeDModel] = useState<string | null>(null);
+  const [prompt, setPrompt] = useState("This is a prompt sample which created the starting image concept");
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const scrollStatus = () => {
-      if (statusRef.current) {
-        if (statusRef.current.scrollLeft >= statusRef.current.scrollWidth - statusRef.current.clientWidth) {
-          statusRef.current.scrollLeft = 0;
-        } else {
-          statusRef.current.scrollLeft += 1;
-        }
+  const handleProceed = async () => {
+    setIsLoading(true);
+    try {
+      if (currentStep === "concept") {
+        const newImageUrl = await generateConceptImage(prompt);
+        setConceptImage(newImageUrl);
+        toast.success("New concept image generated!");
+      } else if (currentStep === "3d") {
+        const modelUrl = await convertToThreeD(conceptImage);
+        setThreeDModel(modelUrl);
+        toast.success("3D model generated!");
       }
-    };
-
-    const intervalId = setInterval(scrollStatus, 50);
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const handleAddMaterial = (material: string) => {
-    setSelectedMaterial(material);
-  };
-
-  const handleAddColor = (name: string, color: string) => {
-    setSelectedColor({ name, color });
-  };
-
-  const handleRemoveMaterial = () => {
-    setSelectedMaterial(null);
-  };
-
-  const handleRemoveColor = () => {
-    setSelectedColor(null);
+    } catch (error) {
+      toast.error("An error occurred during generation");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-smolder-bg relative w-full overflow-hidden">
       <Navbar />
-      
-      {/* Updated backdrop styling */}
-      <div 
-        className={`fixed top-0 left-0 right-0 h-24 transition-all duration-300 z-10 
-          ${isScrolled ? 'bg-black/40 backdrop-blur-xl' : ''}`} 
-      />
       
       <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
@@ -117,25 +78,24 @@ const Details = () => {
             </Button>
           </div>
 
-          {/* Middle Column - Main Image */}
+          {/* Middle Column - Main Preview */}
           <div className="col-span-12 lg:col-span-5 w-full">
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
               <div className="relative aspect-[4/5]">
-                <img 
-                  src="/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png"
-                  alt="Concept preview" 
-                  className="w-full h-full object-cover"
-                />
+                {currentStep === "concept" ? (
+                  <img 
+                    src={conceptImage}
+                    alt="Concept preview" 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <ThreeDViewer modelUrl={threeDModel || ''} />
+                )}
                 <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-md">
-                  <span className="text-white text-sm font-medium">CONCEPT</span>
+                  <span className="text-white text-sm font-medium">
+                    {currentStep === "concept" ? "CONCEPT" : "3D MODEL"}
+                  </span>
                 </div>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-md hover:bg-black/60 rounded-full w-10 h-10 flex items-center justify-center border-0"
-                >
-                  <Download className="w-4 h-4 text-white" />
-                </Button>
               </div>
             </Card>
           </div>
@@ -149,23 +109,7 @@ const Details = () => {
                     <div className="text-3xl font-bold text-smolder-accent">$27</div>
                     <div className="text-sm text-smolder-text/60">/current-total-costs</div>
                   </div>
-                  <div 
-                    ref={statusRef}
-                    className="flex items-center gap-8 text-sm text-smolder-text whitespace-nowrap overflow-hidden"
-                    style={{ scrollBehavior: 'smooth' }}
-                  >
-                    <div className="flex items-center gap-2 min-w-max">
-                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      Ready
-                    </div>
-                    <div className="flex items-center gap-2 min-w-max">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      Print & delivery to you
-                    </div>
-                    <div className="flex items-center gap-2 min-w-max">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      Discord staff 24/7
-                    </div>
+                  <div className="flex items-center gap-8 text-sm text-smolder-text whitespace-nowrap overflow-hidden">
                     <div className="flex items-center gap-2 min-w-max">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                       Ready
@@ -183,85 +127,13 @@ const Details = () => {
 
                 <div>
                   <h3 className="text-lg font-medium text-smolder-text mb-3">Full Prompt:</h3>
-                  <div className="max-h-32 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-                    <p className="text-sm text-smolder-text/80">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                      when an unknown printer took a galley of type and scrambled it to make a type 
-                      specimen book. It has survived not only five centuries, but also the leap into 
-                      electronic typesetting, remaining essentially unchanged.
-                    </p>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-medium text-smolder-text mb-3">
-                    Printing materials & colors
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="rounded-lg bg-transparent border-smolder-border text-smolder-text"
-                        >
-                          <Plus className="w-4 h-4" /> Add
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-56 bg-smolder-bg border-smolder-border">
-                        <DropdownMenuLabel className="text-smolder-text">Materials</DropdownMenuLabel>
-                        {!selectedMaterial && ["PLA", "ABS", "PETG"].map((material) => (
-                          <DropdownMenuItem 
-                            key={material}
-                            onClick={() => handleAddMaterial(material)}
-                            className="text-smolder-text hover:bg-smolder-muted focus:bg-smolder-muted"
-                          >
-                            {material}
-                          </DropdownMenuItem>
-                        ))}
-                        <DropdownMenuSeparator className="bg-smolder-border" />
-                        <DropdownMenuLabel className="text-smolder-text">Colors</DropdownMenuLabel>
-                        {!selectedColor && [
-                          { name: "Orange", color: "#FEA500" },
-                          { name: "Dark Gray", color: "#4A4A4A" }
-                        ].map((color) => (
-                          <DropdownMenuItem 
-                            key={color.name}
-                            onClick={() => handleAddColor(color.name, color.color)}
-                            className="text-smolder-text hover:bg-smolder-muted focus:bg-smolder-muted"
-                          >
-                            <span className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: color.color }}></span>
-                            {color.name}
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                    
-                    {selectedMaterial && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="rounded-lg bg-transparent border-smolder-border text-smolder-text group"
-                        onClick={handleRemoveMaterial}
-                      >
-                        <span className="mr-1">🛠️</span> {selectedMaterial}
-                        <X className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </Button>
-                    )}
-                    
-                    {selectedColor && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="rounded-lg bg-transparent border-smolder-border text-smolder-text group"
-                        onClick={handleRemoveColor}
-                      >
-                        <span className="w-3 h-3 rounded-full mr-1" style={{ backgroundColor: selectedColor.color }}></span>
-                        {selectedColor.name}
-                        <X className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </Button>
-                    )}
+                  <div className="max-h-32 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50">
+                    <textarea
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      className="w-full min-h-[80px] bg-transparent border-0 text-sm text-smolder-text/80 resize-none focus:ring-0"
+                      placeholder="Enter your prompt here..."
+                    />
                   </div>
                 </div>
 
@@ -271,25 +143,23 @@ const Details = () => {
                   </h3>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
-                      <span className="px-3 py-1 bg-green-500/10 text-green-400 rounded-lg text-sm font-medium">
+                      <span className={`px-3 py-1 ${currentStep === "concept" ? "bg-green-500/10 text-green-400" : "bg-gray-500/10 text-gray-400"} rounded-lg text-sm font-medium`}>
                         Concept image
                       </span>
                       <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                      <span className="text-sm text-smolder-text/80">Conversion to 3D</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                      <span className="text-sm text-smolder-text/80">3D printable</span>
-                      <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                      <span className="text-sm text-smolder-text/80">Printing & delivering</span>
+                      <span className={`text-sm ${currentStep === "3d" ? "text-smolder-text" : "text-smolder-text/60"}`}>Conversion to 3D</span>
                     </div>
                   </div>
                   <div className="mt-6 flex items-center justify-between">
-                    <div className="text-sm text-smolder-text/60">Next: Conversion to 3D</div>
+                    <div className="text-sm text-smolder-text/60">
+                      Next: {currentStep === "concept" ? "Conversion to 3D" : "Final 3D Model"}
+                    </div>
                     <Button 
                       className="relative bg-transparent text-smolder-text hover:bg-transparent border-2 border-[#6445AB] before:absolute before:inset-0 before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10 transition-all duration-300 hover:border-opacity-80"
+                      onClick={handleProceed}
+                      disabled={isLoading}
                     >
-                      Proceed -$3.00
+                      {isLoading ? "Processing..." : `Proceed -$${currentStep === "concept" ? "0.05" : "1.00"}`}
                     </Button>
                   </div>
                 </div>
@@ -297,50 +167,9 @@ const Details = () => {
             </Card>
           </div>
         </div>
-
-        {/* Bottom Carousel */}
-        <div className="mt-12 mb-8 max-w-7xl mx-auto">
-          <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-smolder-border scrollbar-track-smolder-muted/50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-            <Carousel className="w-full">
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/5">
-                    <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
-                      <div className="relative aspect-video">
-                        <img 
-                          src={`/lovable-uploads/679b8c6e-5fc5-4233-bd07-0c1b4966e8dd.png`}
-                          alt={`Step ${index}`}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-md">
-                          <span className="text-white text-sm font-medium">
-                            {index === 1 ? "CONCEPT" : 
-                             index === 2 ? "3D" :
-                             index === 3 ? "PRINTABLE FILE" :
-                             index === 4 ? "PRINTING 3D MODEL" :
-                             "DELIVERY TO YOU"}
-                          </span>
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="absolute bottom-1 right-2 bg-black/50 backdrop-blur-md hover:bg-black/60 rounded-full w-10 h-10 flex items-center justify-center border-0"
-                        >
-                          <Download className="w-4 h-4 text-white" />
-                        </Button>
-                      </div>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
-          </div>
-        </div>
       </main>
     </div>
   );
 };
 
-export default Details;
+export default Product;

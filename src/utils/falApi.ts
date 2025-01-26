@@ -49,7 +49,7 @@ interface TrellisResponse {
 export const generateConceptImage = async (prompt: string): Promise<string> => {
   try {
     console.log('Generating concept image with prompt:', prompt);
-    const result = await fal.subscribe<FluxResponse>('fal-ai/flux/schnell', {
+    const result = await fal.subscribe("fal-ai/flux/schnell", {
       input: {
         prompt,
         image_size: "landscape_16_9",
@@ -79,7 +79,7 @@ export const generateConceptImage = async (prompt: string): Promise<string> => {
 export const convertToThreeD = async (imageUrl: string): Promise<string> => {
   try {
     console.log('Converting image to 3D:', imageUrl);
-    const result = await fal.subscribe<TrellisResponse>('fal-ai/trellis', {
+    const result = await fal.subscribe("fal-ai/trellis", {
       input: {
         image_url: imageUrl,
         texture_size: "2048",

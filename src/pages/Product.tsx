@@ -19,16 +19,32 @@ const Product = () => {
     setIsLoading(true);
     try {
       if (currentStep === "concept") {
-        const newImageUrl = await generateConceptImage(prompt);
-        setConceptImage(newImageUrl);
-        toast.success("New concept image generated!");
+        toast.promise(
+          generateConceptImage(prompt).then(newImageUrl => {
+            setConceptImage(newImageUrl);
+            setCurrentStep("3d");
+          }),
+          {
+            loading: 'Generating concept image...',
+            success: 'New concept image generated!',
+            error: 'Failed to generate concept image'
+          }
+        );
       } else if (currentStep === "3d") {
-        const modelUrl = await convertToThreeD(conceptImage);
-        setThreeDModel(modelUrl);
-        toast.success("3D model generated!");
+        toast.promise(
+          convertToThreeD(conceptImage).then(modelUrl => {
+            setThreeDModel(modelUrl);
+          }),
+          {
+            loading: 'Converting to 3D model...',
+            success: '3D model generated!',
+            error: 'Failed to convert to 3D'
+          }
+        );
       }
     } catch (error) {
-      toast.error("An error occurred during generation");
+      console.error('Error during generation:', error);
+      toast.error(error.message || "An error occurred during generation");
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +67,7 @@ const Product = () => {
             </Link>
             
             <h1 className="mt-4 text-3xl font-semibold text-smolder-text break-words">
-              3D - This is the prompt resumed as a title for easy access
+              {prompt.length > 50 ? `${prompt.substring(0, 50)}...` : prompt}
             </h1>
             
             <div className="mt-4 flex items-center gap-3">
@@ -61,21 +77,14 @@ const Product = () => {
                 className="rounded-full border-smolder-border"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
-                  toast("Copied link of the product to clipboard");
+                  toast.success("Link copied to clipboard");
                 }}
               >
                 <LinkIcon className="w-4 h-4" />
               </Button>
             </div>
             
-            <div className="mt-8 text-sm text-smolder-text/60">Made by SmolderAI group</div>
-            
-            <Button 
-              variant="outline" 
-              className="mt-4 rounded-full text-sm border-smolder-border"
-            >
-              Contact us
-            </Button>
+            <div className="mt-8 text-sm text-smolder-text/60">Made with FAL.ai</div>
           </div>
 
           {/* Middle Column - Main Preview */}
@@ -83,13 +92,15 @@ const Product = () => {
             <Card className="overflow-hidden rounded-xl border-0 shadow-lg bg-smolder-muted">
               <div className="relative aspect-[4/5]">
                 {currentStep === "concept" ? (
-                  <img 
-                    src={conceptImage}
-                    alt="Concept preview" 
-                    className="w-full h-full object-cover"
-                  />
+                  conceptImage && (
+                    <img 
+                      src={conceptImage}
+                      alt="Concept preview" 
+                      className="w-full h-full object-cover"
+                    />
+                  )
                 ) : (
-                  <ThreeDViewer modelUrl={threeDModel || ''} />
+                  threeDModel && <ThreeDViewer modelUrl={threeDModel} />
                 )}
                 <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-md">
                   <span className="text-white text-sm font-medium">
@@ -147,12 +158,14 @@ const Product = () => {
                         Concept image
                       </span>
                       <ArrowRight className="w-4 h-4 text-smolder-text/40" />
-                      <span className={`text-sm ${currentStep === "3d" ? "text-smolder-text" : "text-smolder-text/60"}`}>Conversion to 3D</span>
+                      <span className={`px-3 py-1 ${currentStep === "3d" ? "bg-green-500/10 text-green-400" : "bg-gray-500/10 text-gray-400"} rounded-lg text-sm font-medium`}>
+                        3D Model
+                      </span>
                     </div>
                   </div>
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-smolder-text/60">
-                      Next: {currentStep === "concept" ? "Conversion to 3D" : "Final 3D Model"}
+                      Next: {currentStep === "concept" ? "Generate 3D Model" : "Download Model"}
                     </div>
                     <Button 
                       className="relative bg-transparent text-smolder-text hover:bg-transparent border-2 border-[#6445AB] before:absolute before:inset-0 before:bg-gradient-to-r before:from-smolder-gradient-from before:to-smolder-gradient-to before:rounded-md before:-z-10 after:absolute after:inset-[1px] after:bg-smolder-muted after:rounded-[4px] after:-z-10 transition-all duration-300 hover:border-opacity-80"

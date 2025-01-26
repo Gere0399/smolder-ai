@@ -1,5 +1,10 @@
 import { fal } from "@fal-ai/client";
 
+// Initialize the fal client with the API key
+fal.config({
+  credentials: process.env.FAL_KEY,
+});
+
 export const generateConceptImage = async (prompt: string) => {
   try {
     const result = await fal.subscribe("fal-ai/flux/schnell", {

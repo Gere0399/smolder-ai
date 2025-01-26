@@ -22,7 +22,7 @@ export const convertToThreeD = async (imageUrl: string) => {
     const result = await fal.subscribe("fal-ai/trellis", {
       input: {
         image_url: imageUrl,
-        texture_size: 2048,
+        texture_size: "2048" as "512" | "1024" | "1536" | "2048",
       },
     });
     return result.data.model_mesh.url;

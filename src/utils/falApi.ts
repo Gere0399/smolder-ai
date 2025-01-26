@@ -2,12 +2,12 @@ import { fal } from "@fal-ai/client";
 
 // Initialize the fal client with the API key
 fal.config({
-  credentials: import.meta.env.FAL_KEY,
+  credentials: import.meta.env.FAL_KEY || '',
 });
 
 export const generateConceptImage = async (prompt: string) => {
   try {
-    const result = await fal.subscribe("fal-ai/flux/schnell", {
+    const result = await fal.subscribe("fal-ai/flux", {
       input: {
         prompt,
         image_size: "landscape_4_3",

@@ -12,8 +12,8 @@ serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { 
-      headers: corsHeaders,
-      status: 200
+      status: 204, 
+      headers: corsHeaders 
     });
   }
 
@@ -24,8 +24,10 @@ serve(async (req) => {
       throw new Error('FAL_KEY not configured');
     }
 
+    // Configure FAL client
     fal.config({ credentials: falKey });
     
+    // Parse request body
     const { prompt, step } = await req.json();
     console.log(`Processing ${step} with prompt:`, prompt);
 
@@ -46,15 +48,24 @@ serve(async (req) => {
         },
       });
 
-      if (!result.data?.images?.[0]?.url) {
+      if (!result?.data?.images?.[0]?.url) {
         console.error('No image URL in FAL.ai response:', result);
         throw new Error('Failed to generate image');
       }
 
       console.log('Successfully generated concept image');
       return new Response(
-        JSON.stringify({ imageUrl: result.data.images[0].url }), 
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
+        JSON.stringify({ 
+          success: true,
+          imageUrl: result.data.images[0].url 
+        }), 
+        { 
+          status: 200,
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          }
+        }
       );
     }
 
@@ -78,15 +89,24 @@ serve(async (req) => {
         },
       });
 
-      if (!result.data?.model_mesh?.url) {
+      if (!result?.data?.model_mesh?.url) {
         console.error('No model URL in FAL.ai response:', result);
         throw new Error('Failed to generate 3D model');
       }
 
       console.log('Successfully generated 3D model');
       return new Response(
-        JSON.stringify({ modelUrl: result.data.model_mesh.url }), 
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
+        JSON.stringify({ 
+          success: true,
+          modelUrl: result.data.model_mesh.url 
+        }), 
+        { 
+          status: 200,
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          }
+        }
       );
     }
 
@@ -95,13 +115,17 @@ serve(async (req) => {
     console.error('Error in generate-images function:', error);
     return new Response(
       JSON.stringify({ 
+        success: false,
         error: 'An unexpected error occurred', 
         details: error.message,
         timestamp: new Date().toISOString()
       }), 
       {
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json' 
+        },
       }
     );
   }

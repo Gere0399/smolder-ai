@@ -13,7 +13,7 @@ serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { 
       headers: corsHeaders,
-      status: 200 // Explicitly set 200 status for OPTIONS
+      status: 200
     });
   }
 
@@ -32,7 +32,7 @@ serve(async (req) => {
       const result = await fal.subscribe("fal-ai/flux/schnell", {
         input: {
           prompt,
-          image_size: "landscape_16_9" as const,
+          image_size: "landscape_16_9",
           num_inference_steps: 50,
           num_images: 1,
         },
@@ -47,15 +47,20 @@ serve(async (req) => {
       console.log('Concept generation result:', result);
       return new Response(
         JSON.stringify({ imageUrl: result.data?.images?.[0]?.url }), 
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          }
+        }
       );
     }
 
     if (step === 'model') {
       const result = await fal.subscribe("fal-ai/trellis", {
         input: {
-          image_url: prompt, // In this case, prompt is the image URL
-          texture_size: "2048" as const,
+          image_url: prompt,
+          texture_size: "2048",
           ss_guidance_strength: 7.5,
           ss_sampling_steps: 12,
           slat_guidance_strength: 3,
@@ -73,7 +78,12 @@ serve(async (req) => {
       console.log('3D model generation result:', result);
       return new Response(
         JSON.stringify({ modelUrl: result.data?.model_mesh?.url }), 
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          }
+        }
       );
     }
 
@@ -84,7 +94,10 @@ serve(async (req) => {
       JSON.stringify({ error: error.message }), 
       {
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json' 
+        },
       }
     );
   }

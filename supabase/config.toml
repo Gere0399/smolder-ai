@@ -1,4 +1,13 @@
 project_id = "lziztfuyzqchorafzqgs"
 
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+
+[db]
+port = 54322
+
+[functions]
 [functions.generate-images]
 verify_jwt = false

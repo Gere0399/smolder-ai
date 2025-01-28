@@ -20,15 +20,17 @@ serve(async (req) => {
   try {
     const falKey = Deno.env.get('FAL_KEY');
     if (!falKey) {
-      throw new Error('FAL_KEY not found in environment variables');
+      console.error('FAL_KEY not found in environment variables');
+      throw new Error('FAL_KEY not configured');
     }
 
     fal.config({ credentials: falKey });
     
     const { prompt, step } = await req.json();
-    console.log(`Processing ${step} with prompt: ${prompt}`);
+    console.log(`Processing ${step} with prompt:`, prompt);
 
     if (step === 'concept') {
+      console.log('Starting concept image generation...');
       const result = await fal.subscribe("fal-ai/flux/schnell", {
         input: {
           prompt,
@@ -44,19 +46,20 @@ serve(async (req) => {
         },
       });
 
-      console.log('Concept generation result:', result);
+      if (!result.data?.images?.[0]?.url) {
+        console.error('No image URL in FAL.ai response:', result);
+        throw new Error('Failed to generate image');
+      }
+
+      console.log('Successfully generated concept image');
       return new Response(
-        JSON.stringify({ imageUrl: result.data?.images?.[0]?.url }), 
-        { 
-          headers: { 
-            ...corsHeaders, 
-            'Content-Type': 'application/json' 
-          }
-        }
+        JSON.stringify({ imageUrl: result.data.images[0].url }), 
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
       );
     }
 
     if (step === 'model') {
+      console.log('Starting 3D model generation...');
       const result = await fal.subscribe("fal-ai/trellis", {
         input: {
           image_url: prompt,
@@ -75,15 +78,15 @@ serve(async (req) => {
         },
       });
 
-      console.log('3D model generation result:', result);
+      if (!result.data?.model_mesh?.url) {
+        console.error('No model URL in FAL.ai response:', result);
+        throw new Error('Failed to generate 3D model');
+      }
+
+      console.log('Successfully generated 3D model');
       return new Response(
-        JSON.stringify({ modelUrl: result.data?.model_mesh?.url }), 
-        { 
-          headers: { 
-            ...corsHeaders, 
-            'Content-Type': 'application/json' 
-          }
-        }
+        JSON.stringify({ modelUrl: result.data.model_mesh.url }), 
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
       );
     }
 
@@ -91,13 +94,14 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in generate-images function:', error);
     return new Response(
-      JSON.stringify({ error: error.message }), 
+      JSON.stringify({ 
+        error: 'An unexpected error occurred', 
+        details: error.message,
+        timestamp: new Date().toISOString()
+      }), 
       {
         status: 500,
-        headers: { 
-          ...corsHeaders, 
-          'Content-Type': 'application/json' 
-        },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     );
   }

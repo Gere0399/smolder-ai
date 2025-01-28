@@ -5,12 +5,16 @@ import { fal } from "npm:@fal-ai/serverless-client";
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { 
+      headers: corsHeaders,
+      status: 200 // Explicitly set 200 status for OPTIONS
+    });
   }
 
   try {
@@ -41,11 +45,10 @@ serve(async (req) => {
       });
 
       console.log('Concept generation result:', result);
-      return new Response(JSON.stringify({ 
-        imageUrl: result.data?.images?.[0]?.url 
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return new Response(
+        JSON.stringify({ imageUrl: result.data?.images?.[0]?.url }), 
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
+      );
     }
 
     if (step === 'model') {
@@ -68,19 +71,21 @@ serve(async (req) => {
       });
 
       console.log('3D model generation result:', result);
-      return new Response(JSON.stringify({ 
-        modelUrl: result.data?.model_mesh?.url 
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return new Response(
+        JSON.stringify({ modelUrl: result.data?.model_mesh?.url }), 
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }}
+      );
     }
 
     throw new Error('Invalid step specified');
   } catch (error) {
     console.error('Error in generate-images function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ error: error.message }), 
+      {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    );
   }
 });
